@@ -1,0 +1,58 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Vos styles personnalisés ici */
+
+/* Variables globales */
+:root {
+    --primary-color: #10B981;
+    --primary-dark: #059669;
+    --primary-light: #D1FAE5;
+    --secondary-color: #f7a223;
+    --secondary-light: #ffe0b2;
+    --text-color: #1f2937;
+    --light-gray: #f8f9fa;
+    --border-radius: 0.5rem;
+}
+
+/* Styles de base */
+body {
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+.arabic-text {
+    font-family: 'Amiri', serif;
+}
+
+[dir="rtl"] {
+    font-family: 'Amiri', serif;
+}
+[dir="rtl"] {
+    font-family: 'Amiri', serif;
+    text-align: right;
+}
+
+[dir="rtl"] .navbar-nav {
+    padding-right: 0;
+    margin-right: auto;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+[dir="rtl"] .me-1, 
+[dir="rtl"] .me-2, 
+[dir="rtl"] .me-3 {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+[dir="rtl"] .ms-1,
+[dir="rtl"] .ms-2,
+[dir="rtl"] .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+}
