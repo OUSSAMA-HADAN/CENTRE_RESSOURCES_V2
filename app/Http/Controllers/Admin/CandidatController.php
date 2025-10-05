@@ -96,6 +96,7 @@ class CandidatController extends Controller
         'marital_status' => 'required|in:single,married,divorced,widowed',
         'years_of_experience' => 'required|integer|min:0|max:100',
         'education_level' => 'required|string|max:255',
+        'etablissement' => 'required|string|max:255',
         'status' => 'required|in:pending,approved,rejected',
         'notes' => 'nullable|string',
     ]);

@@ -64,6 +64,7 @@
                             <th>Nom complet</th>
                             <th>Email</th>
                             <th>Téléphone</th>
+                            <th>Etablissement</th>
                             <th>Niveau d'éducation</th>
                             <th>Statut</th>
                             <th>Date d'inscription</th>
@@ -77,6 +78,7 @@
                             <td>{{ $candidat->first_name }} {{ $candidat->last_name }}</td>
                             <td>{{ $candidat->email }}</td>
                             <td>{{ $candidat->phone_number }}</td>
+                            <td>{{ $candidat->etablissement }}</td>
                             <td>{{ $candidat->education_level }}</td>
                             <td>
                                 @switch($candidat->status)

@@ -39,6 +39,8 @@ class ApplicantController extends Controller
             'marital_status' => 'required|in:single,married,divorced,widowed',
             'years_of_experience' => 'required|integer|min:0|max:100',
             'education_level' => 'required|string|max:255',
+            'etablissement' => 'required|string|max:255',
+
         ], [
             'email.unique' => __('form.validation.email_unique'),
             'id_card_number.unique' => __('form.validation.id_card_unique'),
@@ -65,6 +67,7 @@ class ApplicantController extends Controller
                 'years_of_experience' => $request->years_of_experience,
                 'education_level' => $request->education_level,
                 'status' => 'pending',
+                'etablissement' => $request->etablissement,
                 'reference_number' => $this->generateReferenceNumber(),
             ]);
 

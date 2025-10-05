@@ -113,8 +113,13 @@
                         <td>{{ $candidat->education_level }}</td>
                     </tr>
                     <tr>
+                        <th class="bg-light">Etablissement</th>
+                        <td>{{ $candidat->etablissement }} </td>
                         <th class="bg-light">Date d'inscription</th>
                         <td>{{ $candidat->created_at->format('d/m/Y H:i') }}</td>
+                    </tr>
+                    <tr>
+                        
                         <th class="bg-light">Numéro de référence</th>
                         <td>{{ $candidat->reference_number }}</td>
                     </tr>

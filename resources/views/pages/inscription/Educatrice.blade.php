@@ -9,7 +9,8 @@
                     <h2 class="mb-0" style="color: #10b981;">
                         <i class="fas fa-chalkboard-teacher me-2"></i>Inscription des Éducatrices
                     </h2>
-                    <p class="text-muted mb-0">Formation dédiée aux éducatrices des écoles privées</p>
+                    <p class="text-muted mb-0">Formation réservée aux enseignantes du secteur privé (et non du public)</p>
+                    <p class="text-muted mb-0">تكوين موجّه للمربيات الناشطات بالمؤسسات التعليمية الخاصة (وليس العمومي)</p>
                 </div>
                 
                 <div class="card-body p-md-5 p-3">
@@ -89,7 +90,7 @@
                             
                             <!-- CIN -->
                             <div class="col-md-6 mb-3">
-                                <label for="cin" class="form-label fw-bold">Numéro CIN <span class="text-danger">*</span></label>
+                                <label for="cin" class="form-label fw-bold">Numéro CIN/رقم بطاقة التعريف الوطنية <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg @error('cin') is-invalid @enderror" 
                                        id="cin" name="cin" value="{{ old('cin') }}" required>
                                 @error('cin')
@@ -99,7 +100,7 @@
                             
                             <!-- Email -->
                             <div class="col-md-6 mb-3">
-                                <label for="email" class="form-label fw-bold">Email</label>
+                                <label for="email" class="form-label fw-bold">Adresse e-mail/البريد الإلكتروني</label>
                                 <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" 
                                        id="email" name="email" value="{{ old('email') }}">
                                 @error('email')
@@ -109,7 +110,7 @@
                             
                             <!-- Téléphone -->
                             <div class="col-md-6 mb-3">
-                                <label for="telephone" class="form-label fw-bold">Téléphone</label>
+                                <label for="telephone" class="form-label fw-bold">Numéro de téléphone/رقم الهاتف</label>
                                 <input type="tel" class="form-control form-control-lg @error('telephone') is-invalid @enderror" 
                                        id="telephone" name="telephone" value="{{ old('telephone') }}">
                                 @error('telephone')
@@ -131,7 +132,7 @@
                             
                             <!-- Établissement -->
                             <div class="col-md-12 mb-3">
-                                <label for="etablissement" class="form-label fw-bold">Établissement <span class="text-danger">*</span></label>
+                                <label for="etablissement" class="form-label fw-bold">Établissement/مؤسسة الاشتغال <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg @error('etablissement') is-invalid @enderror" 
                                        id="etablissement" name="etablissement" value="{{ old('etablissement') }}" required>
                                 @error('etablissement')
@@ -141,7 +142,7 @@
                             
                             <!-- Niveau scolaire -->
                             <div class="col-md-6 mb-3">
-                                <label for="niveau_scolaire" class="form-label fw-bold">Niveau scolaire <span class="text-danger">*</span></label>
+                                <label for="niveau_scolaire" class="form-label fw-bold">Niveau scolaire/المستوى الدراسي او الجامعي الخاص بالمربية <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg @error('niveau_scolaire') is-invalid @enderror" 
                                        id="niveau_scolaire" name="niveau_scolaire" value="{{ old('niveau_scolaire') }}" required>
                                 @error('niveau_scolaire')
@@ -151,7 +152,7 @@
                             
                             <!-- Années d'expérience -->
                             <div class="col-md-6 mb-3">
-                                <label for="annees_experience" class="form-label fw-bold">Années d'expérience <span class="text-danger">*</span></label>
+                                <label for="annees_experience" class="form-label fw-bold">Années d'expérience/سنوات الخبرة <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control form-control-lg @error('annees_experience') is-invalid @enderror" 
                                        id="annees_experience" name="annees_experience" value="{{ old('annees_experience') }}" min="0" required>
                                 @error('annees_experience')

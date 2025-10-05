@@ -32,8 +32,9 @@
                             class="text-white-50 text-decoration-none"><i
                                 class="fas fa-chevron-right me-2 small"></i>{{ __('footer.quick_links.location') }}</a>
                     </li>
-                    <li><a href="{{ route('inscription.form') }}" class="text-white-50 text-decoration-none"><i
-                                class="fas fa-chevron-right me-2 small"></i>{{ __('footer.quick_links.register') }}</a>
+                    
+                    <li><a href="{{ route('admin.dashboard') }}" class="text-white-50 text-decoration-none"><i
+                                class="fas fa-chevron-right me-2 small"></i>Espace admin</a>
                     </li>
                 </ul>
             </div>

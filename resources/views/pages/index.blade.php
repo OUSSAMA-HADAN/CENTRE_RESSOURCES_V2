@@ -10,17 +10,13 @@
 
 
 
-
-
-<!-- Enhanced Hero Section with Responsive Adjustments -->
-<section id="hero" class="hero position-relative d-flex align-items-center justify-content-center text-white" style="min-height: 90vh; padding-top: 76px; background: linear-gradient(rgba(16, 185, 129, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('storage/images/hero-img.png') }}') center/cover no-repeat fixed; overflow: hidden;">
+<!-- Enhanced Hero Section with Perfect Responsiveness -->
+<section id="hero" class="hero position-relative d-flex align-items-center justify-content-center text-white" style="min-height: 100vh; padding-top: 80px; background: linear-gradient(rgba(16, 185, 129, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('storage/images/hero-img.png') }}') center/cover no-repeat fixed; overflow: hidden;">
     
     <!-- Animated Particles -->
     <div class="particles-container position-absolute w-100 h-100 top-0 start-0" style="z-index: 1;"></div>
     
     <div class="container position-relative" style="z-index: 10;">
-
-
 
         <!--<div class="dev-banner">-->
         <!--    <div class="dev-banner-inner">-->
@@ -28,9 +24,8 @@
         <!--    </div>-->
         <!--</div>-->
 
-
         <style>
-            /* Simple Development Banner - High visibility */
+            /* Development Banner */
             .dev-banner {
                 position: absolute;
                 top: 20px;
@@ -59,9 +54,315 @@
                 50% { transform: scale(1.05); }
                 100% { transform: scale(1); }
             }
-            
-            /* Responsive styles for the banner */
+
+            /* Professional Enhancement Styles */
+            .hero-logo-container {
+                background: rgba(255, 255, 255, 0.12);
+                backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                padding: 2rem;
+                display: inline-block;
+                transition: all 0.3s ease;
+                margin-bottom: 2rem;
+            }
+
+            .hero-logo-container:hover {
+                transform: scale(1.05);
+                background: rgba(255, 255, 255, 0.18);
+                box-shadow: 0 15px 35px rgba(255, 193, 7, 0.2);
+            }
+
+            .hero-logo-icon {
+                background: linear-gradient(135deg, #ffc107, #f59e0b);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.3));
+                font-size: 4rem;
+            }
+
+            .hero-title-gradient {
+                background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+                letter-spacing: -0.02em;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-arabic-title {
+                text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+                font-family: 'Amiri', serif;
+                opacity: 0.95;
+                margin-bottom: 2rem;
+            }
+
+            .hero-separator-enhanced {
+                width: 150px;
+                height: 4px;
+                background: linear-gradient(90deg, transparent, #ffc107, transparent);
+                border-radius: 2px;
+                box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+                position: relative;
+                margin: 2rem auto;
+            }
+
+            .hero-separator-enhanced::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 8px;
+                height: 8px;
+                background: #ffc107;
+                border-radius: 50%;
+                box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
+            }
+
+            .hero-buttons-container {
+                margin-bottom: 4rem;
+                gap: 1rem;
+            }
+
+            .hero-btn-primary {
+                background: linear-gradient(135deg, #ffc107 0%, #f59e0b 100%);
+                border: none;
+                border-radius: 50px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .hero-btn-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+
+            .hero-btn-primary:hover::before {
+                left: 100%;
+            }
+
+            .hero-btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+                background: linear-gradient(135deg, #f59e0b 0%, #ffc107 100%);
+            }
+
+            .hero-btn-secondary {
+                border: 2px solid rgba(255, 255, 255, 0.8);
+                border-radius: 50px;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.1);
+                position: relative;
+                overflow: hidden;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .hero-btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: white;
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+            }
+
+            /* Enhanced particles animation */
+            .particles-container::before,
+            .particles-container::after {
+                content: '';
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.4);
+                border-radius: 50%;
+                animation: float 6s ease-in-out infinite;
+            }
+
+            .particles-container::before {
+                top: 20%;
+                left: 10%;
+                animation-delay: -2s;
+            }
+
+            .particles-container::after {
+                top: 60%;
+                right: 15%;
+                animation-delay: -4s;
+            }
+
+            @keyframes float {
+                0%, 100% { 
+                    transform: translateY(0px) rotate(0deg); 
+                    opacity: 0.4; 
+                }
+                50% { 
+                    transform: translateY(-25px) rotate(180deg); 
+                    opacity: 0.8; 
+                }
+            }
+
+            /* TV News Ticker Bar Styles */
+            .news-ticker-wrapper {
+                position: absolute;
+                bottom: 140px;
+                left: 0;
+                right: 0;
+                z-index: 50;
+                padding: 0 15px;
+            }
+
+            .news-ticker {
+                width: 100%;
+                height: 50px;
+                background: #7edc2671;
+                color: white;
+                box-shadow: 0 2px 15px rgba(220, 38, 38, 0.4);
+                overflow: hidden;
+                border-radius: 8px;
+            }
+
+            .news-ticker-content {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                white-space: nowrap;
+                animation: scrollNews 30s linear infinite;
+            }
+
+            .news-ticker-label {
+                background: #991b1b;
+                padding: 0 20px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                flex-shrink: 0;
+                border-right: 3px solid #dc2626;
+            }
+
+            .news-ticker-text {
+                padding: 0 30px;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 1.2;
+                white-space: nowrap;
+                overflow: visible;
+                 min-width: max-content;
+                flex-shrink: 0;
+            }
+
+            @keyframes scrollNews {
+                0% {
+                    transform: translateX(100%);
+                }
+                100% {
+                    transform: translateX(-200%);
+                }
+            }
+
+            /* RTL animation for Arabic mode */
+            html[lang="ar"] .news-ticker-content,
+            body[lang="ar"] .news-ticker-content,
+            [lang="ar"] .news-ticker-content {
+                animation: scrollNewsRTL 20s linear infinite;
+            }
+
+            @keyframes scrollNewsRTL {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(300%);
+                }
+            }
+
+            /* Adjust label position for RTL */
+            html[lang="ar"] .news-ticker-label,
+            body[lang="ar"] .news-ticker-label,
+            [lang="ar"] .news-ticker-label {
+                border-right: none;
+                border-left: 3px solid #dc2626;
+                order: 2;
+            }
+
+            html[lang="ar"] .news-ticker-text,
+            body[lang="ar"] .news-ticker-text,
+            [lang="ar"] .news-ticker-text {
+                order: 1;
+                direction: rtl;
+                text-align: right;
+            }
+
+            /* Tablet Responsive (768px - 991px) */
+            @media (max-width: 991.98px) {
+                .hero {
+                    min-height: 95vh;
+                    padding-top: 70px;
+                }
+                
+                .hero-logo-container {
+                    padding: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
+                
+                .hero-logo-icon {
+                    font-size: 3.5rem;
+                }
+                
+                .hero-title-gradient {
+                    font-size: 2.5rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .hero-arabic-title {
+                    font-size: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
+                
+                .hero-separator-enhanced {
+                    width: 120px;
+                    margin: 1.5rem auto;
+                }
+                
+                .hero-buttons-container {
+                    margin-bottom: 3rem;
+                }
+                
+                .hero-btn-primary,
+                .hero-btn-secondary {
+                    padding: 0.875rem 1.5rem;
+                    font-size: 1rem;
+                }
+                
+                .news-ticker-wrapper {
+                    bottom: 120px;
+                }
+            }
+
+            /* Mobile Responsive (max-width: 767px) */
             @media (max-width: 767.98px) {
+                .hero {
+                    min-height: 90vh;
+                    padding-top: 60px;
+                }
+                
                 .dev-banner {
                     top: 15px;
                 }
@@ -70,9 +371,86 @@
                     font-size: 16px;
                     padding: 6px 20px;
                 }
+                
+                .hero-logo-container {
+                    padding: 1.25rem;
+                    margin-bottom: 1.25rem;
+                    margin-top: 40px;
+                }
+                
+                .hero-logo-icon {
+                    font-size: 3rem;
+                }
+                
+                .hero-title-gradient {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                    line-height: 1.2;
+                }
+                
+                .hero-arabic-title {
+                    font-size: 1.25rem;
+                    margin-bottom: 1.25rem;
+                }
+                
+                .hero-separator-enhanced {
+                    width: 100px;
+                    margin: 1.25rem auto;
+                }
+                
+                .hero-buttons-container {
+                    flex-direction: column;
+                    margin-bottom: 2.5rem;
+                    gap: 0.75rem;
+                }
+                
+                .hero-btn-primary,
+                .hero-btn-secondary {
+                    padding: 0.75rem 1.25rem;
+                    font-size: 0.95rem;
+                    width: 100%;
+                    max-width: 280px;
+                    margin: 0 auto;
+                }
+                
+                .news-ticker-wrapper {
+                    bottom: 100px;
+                    padding: 0 10px;
+                }
+                
+                .news-ticker {
+                    height: 45px;
+                    border-radius: 6px;
+                }
+                
+                .news-ticker-content {
+                    animation: scrollNewsMobile 40s linear infinite;
+                }
+                
+                html[lang="ar"] .news-ticker-content,
+                body[lang="ar"] .news-ticker-content,
+                [lang="ar"] .news-ticker-content {
+                    animation: scrollNewsRTLMobile 25s linear infinite;
+                }
+                
+                .news-ticker-label {
+                    padding: 0 15px;
+                    font-size: 12px;
+                }
+                
+                .news-ticker-text {
+                    font-size: 13px;
+                    padding: 0 20px;
+                }
             }
-            
+
+            /* Small Mobile Responsive (max-width: 575px) */
             @media (max-width: 575.98px) {
+                .hero {
+                    min-height: 85vh;
+                    padding-top: 50px;
+                }
+                
                 .dev-banner {
                     top: 10px;
                 }
@@ -81,42 +459,174 @@
                     font-size: 14px;
                     padding: 5px 15px;
                 }
+                
+                .hero-logo-container {
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                    margin-top: 30px;
+                }
+                
+                .hero-logo-icon {
+                    font-size: 2.5rem;
+                }
+                
+                .hero-title-gradient {
+                    font-size: 1.75rem;
+                    margin-bottom: 0.75rem;
+                    line-height: 1.1;
+                }
+                
+                .hero-arabic-title {
+                    font-size: 1.1rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .hero-separator-enhanced {
+                    width: 80px;
+                    margin: 1rem auto;
+                }
+                
+                .hero-buttons-container {
+                    margin-bottom: 2rem;
+                    gap: 0.5rem;
+                }
+                
+                .hero-btn-primary,
+                .hero-btn-secondary {
+                    padding: 0.625rem 1rem;
+                    font-size: 0.9rem;
+                    max-width: 250px;
+                }
+                
+                .news-ticker-wrapper {
+                    bottom: 80px;
+                    padding: 0 5px;
+                }
+                
+                .news-ticker {
+                    height: 40px;
+                    border-radius: 4px;
+                }
+                
+                .news-ticker-content {
+                    animation: scrollNewsMobile 30s linear infinite;
+                }
+                
+                html[lang="ar"] .news-ticker-content,
+                body[lang="ar"] .news-ticker-content,
+                [lang="ar"] .news-ticker-content {
+                    animation: scrollNewsRTLMobile 30s linear infinite;
+                }
+                
+                .news-ticker-label {
+                    padding: 0 12px;
+                    font-size: 11px;
+                }
+                
+                .news-ticker-text {
+                    font-size: 12px;
+                    padding: 0 15px;
+                }
+            }
+
+            /* Extra Small Mobile (max-width: 375px) */
+            @media (max-width: 375px) {
+                .hero-title-gradient {
+                    font-size: 1.5rem;
+                }
+                
+                .hero-arabic-title {
+                    font-size: 1rem;
+                }
+                
+                .hero-btn-primary,
+                .hero-btn-secondary {
+                    font-size: 0.85rem;
+                    max-width: 220px;
+                }
+                
+                .news-ticker-wrapper {
+                    bottom: 70px;
+                }
+                
+                .news-ticker {
+                    height: 35px;
+                }
+                
+                .news-ticker-label {
+                    padding: 0 10px;
+                    font-size: 10px;
+                }
+                
+                .news-ticker-text {
+                    font-size: 11px;
+                    padding: 0 12px;
+                }
+            }
+
+            /* Mobile-specific animations with longer distance */
+            @keyframes scrollNewsMobile {
+                0% {
+                    transform: translateX(100%);
+                }
+                100% {
+                    transform: translateX(-400%);
+                }
+            }
+
+            @keyframes scrollNewsRTLMobile {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(250%);
+                }
             }
         </style>
 
-
-
         <div class="row justify-content-center">
-            <div class="col-lg-10 text-center">
-                <!-- Animated Logo Icon -->
-                <div class="mb-3 mb-md-4 animate__animated animate__fadeInDown">
-                    <i class="fas fa-graduation-cap fa-3x fa-md-4x mb-2 mb-md-3" style="color: #ffc107; filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.5));"></i>
+            <div class="col-12 text-center">
+                <!-- Enhanced Animated Logo Icon -->
+                <div class="animate__animated animate__fadeInDown">
+                    <div class="hero-logo-container">
+                        <i class="fas fa-graduation-cap hero-logo-icon"></i>
+                    </div>
                 </div>
                 
-                <!-- Main Title - French -->
-                <h1 class="display-5 display-md-4 fw-bold mb-2 animate__animated animate__fadeInUp" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                <!-- Enhanced Main Title - French -->
+                <h1 class="hero-title-gradient fw-bold animate__animated animate__fadeInUp">
                     Centre de Ressources du Préscolaire - OUJDA
                 </h1>
                 
-                <!-- Title in Arabic -->
-                <h2 class="h3 h2-md fw-bold mb-3 animate__animated animate__fadeInUp animate__delay-1s" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-family: 'Amiri', serif;">
+                <!-- Enhanced Title in Arabic -->
+                <h2 class="hero-arabic-title fw-bold animate__animated animate__fadeInUp animate__delay-1s">
                     مركز موارد التعليم الأولي - وجدة
                 </h2>
                 
-                <!-- Glowing Separator -->
-                <div class="d-flex justify-content-center mb-3 mb-md-4 animate__animated animate__fadeInUp animate__delay-1s">
-                    <div style="width: 120px; height: 3px; background: linear-gradient(90deg, transparent, #ffc107, transparent); border-radius: 2px; box-shadow: 0 0 10px rgba(255, 193, 7, 0.7);"></div>
+                <!-- Enhanced Glowing Separator -->
+                <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="hero-separator-enhanced"></div>
                 </div>
                 
-                <!-- Action buttons with hover effects -->
-                <div class="d-flex flex-column flex-md-row justify-content-center gap-2 gap-md-3 animate__animated animate__fadeInUp animate__delay-2s">
-                    <a href="#" class="btn btn-lg px-3 px-md-4 py-2 py-md-3 shadow-sm hero-btn-primary" data-bs-toggle="modal" data-bs-target="#inscriptionModal">
+                <!-- Enhanced Action buttons with hover effects -->
+                <div class="d-flex justify-content-center hero-buttons-container animate__animated animate__fadeInUp animate__delay-2s">
+                    <a href="#" class="btn hero-btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#inscriptionModal">
                         <i class="fas fa-user-plus me-2"></i>{{ __('homepage.register_button') }}
                     </a>
-                    <a href="#surNous" class="btn btn-outline-light btn-lg px-3 px-md-4 py-2 py-md-3 hero-btn-secondary">
+                    <a href="#surNous" class="btn hero-btn-secondary">
                         <i class="fas fa-info-circle me-2"></i>{{ __('homepage.more_info_button') }}
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TV News Ticker Bar - Perfectly Positioned -->
+    <div class="news-ticker-wrapper animate__animated animate__fadeInUp animate__delay-3s">
+        <div class="news-ticker">
+            <div class="news-ticker-content">
+                
+                <div class="news-ticker-text">{{ __('homepage.disclamer') }}</div>
             </div>
         </div>
     </div>
@@ -139,8 +649,6 @@
         </svg>
     </div>
 </section>
-
-
 
 
 

@@ -104,7 +104,7 @@
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <label for="first_name" class="form-label">
-                                    <i class="fas fa-user text-primary me-2"></i>{{ __('form.fields.first_name') }} *
+                                    <i class="fas fa-user text-primary me-2"></i>Prénom/الإسم الشخصي *
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="first_name" name="first_name"
                                     value="{{ old('first_name') }}" required>
@@ -115,7 +115,7 @@
 
                             <div class="col-md-6">
                                 <label for="last_name" class="form-label">
-                                    <i class="fas fa-user-tag text-primary me-2"></i>{{ __('form.fields.last_name') }} *
+                                    <i class="fas fa-user-tag text-primary me-2"></i>Nom/الإسم العائلي*
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="last_name" name="last_name"
                                     value="{{ old('last_name') }}" required>
@@ -126,7 +126,7 @@
 
                             <div class="col-md-6">
                                 <label for="email" class="form-label">
-                                    <i class="fas fa-envelope text-primary me-2"></i>{{ __('form.fields.email') }} *
+                                    <i class="fas fa-envelope text-primary me-2"></i>Adresse e-mail/البريد الإلكتروني *
                                 </label>
                                 <input type="email" class="form-control form-control-lg" id="email" name="email"
                                     value="{{ old('email') }}" required>
@@ -137,7 +137,7 @@
 
                             <div class="col-md-6">
                                 <label for="phone_number" class="form-label">
-                                    <i class="fas fa-phone text-primary me-2"></i>{{ __('form.fields.phone_number') }} *
+                                    <i class="fas fa-phone text-primary me-2"></i>Numéro de téléphone/رقم الهاتف *
                                 </label>
                                 <input type="tel" class="form-control form-control-lg" id="phone_number"
                                     name="phone_number" value="{{ old('phone_number') }}" required>
@@ -149,7 +149,7 @@
                             <div class="col-md-6">
                                 <label for="birth_date" class="form-label">
                                     <i
-                                        class="fas fa-calendar-alt text-primary me-2"></i>{{ __('form.fields.birth_date') }}
+                                        class="fas fa-calendar-alt text-primary me-2"></i>Date de naissance/تاريخ الميلاد
                                     *
                                 </label>
                                 <input type="date" class="form-control form-control-lg" id="birth_date"
@@ -162,7 +162,7 @@
                             <div class="col-md-6">
                                 <label for="birth_place" class="form-label">
                                     <i
-                                        class="fas fa-map-marker-alt text-primary me-2"></i>{{ __('form.fields.birth_place') }}
+                                        class="fas fa-map-marker-alt text-primary me-2"></i>Lieu de naissance/مكان الإزدياد
                                     *
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="birth_place"
@@ -174,7 +174,7 @@
 
                             <div class="col-md-6">
                                 <label for="id_card_number" class="form-label">
-                                    <i class="fas fa-id-card text-primary me-2"></i>{{ __('form.fields.id_card_number') }}
+                                    <i class="fas fa-id-card text-primary me-2"></i>Numéro de carte d identité/رقم بطاقة التعريف
                                     *
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="id_card_number"
@@ -187,7 +187,7 @@
                             <div class="col-md-6">
                                 <label for="marital_status" class="form-label">
                                     <i
-                                        class="fas fa-heart text-primary me-2"></i>{{ __('form.marital_status_options.chosen') }}
+                                        class="fas fa-heart text-primary me-2"></i>Situation familiale/الوضع العائلي
                                     *
                                 </label>
                                 <select class="form-select form-select-lg" id="marital_status" name="marital_status"
@@ -220,7 +220,7 @@
                             <div class="col-md-6">
                                 <label for="years_of_experience" class="form-label">
                                     <i
-                                        class="fas fa-briefcase text-primary me-2"></i>{{ __('form.fields.years_of_experience') }}
+                                        class="fas fa-briefcase text-primary me-2"></i>Années d'expérience/سنوات الخبرة
                                     *
                                 </label>
                                 <input type="number" class="form-control form-control-lg" id="years_of_experience"
@@ -234,7 +234,7 @@
                             <div class="col-md-6">
                                 <label for="education_level" class="form-label">
                                     <i
-                                        class="fas fa-university text-primary me-2"></i>{{ __('form.fields.education_level') }}
+                                        class="fas fa-university text-primary me-2"></i>Niveau d'éducation/المستوى الدراسي او الجامعي
                                     *
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="education_level"
@@ -242,6 +242,15 @@
                                 <div class="invalid-feedback">
                                     Veuillez entrer votre niveau d'éducation.
                                 </div>
+                            </div>
+                             <!-- Établissement -->
+                            <div class="col-md-6 mb-3">
+                                <label for="etablissement" class="form-label fw-bold">Établissement/مؤسسة الاشتغال <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg @error('etablissement') is-invalid @enderror" 
+                                       id="etablissement" name="etablissement" value="{{ old('etablissement') }}" required>
+                                @error('etablissement')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

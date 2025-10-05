@@ -185,6 +185,17 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="education_level" class="form-label">Etablissement <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('etablissement') is-invalid @enderror" 
+                                  id="etablissement" name="etablissement" 
+                                  value="{{ $candidat->etablissement ?? old('etablissement') }}" required>
+                            @error('etablissement')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     
                     <div class="col-md-6">
                         <div class="form-group mb-3">
