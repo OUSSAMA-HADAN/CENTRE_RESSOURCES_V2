@@ -10,7 +10,7 @@
                         <i class="fas fa-chalkboard-teacher me-2"></i>Inscription des Éducatrices
                     </h2>
                     <p class="text-muted mb-0">Formation réservée aux enseignantes du secteur privé (et non du public)</p>
-                    <p class="text-muted mb-0">تكوين موجّه للمربيات الناشطات بالمؤسسات التعليمية الخاصة (وليس العمومي)</p>
+                    <p class="text-muted mb-0">تكوين موجّه للمربيات الناشطات بالمؤسسات التعليمية فقط</p>
                 </div>
                 
                 <div class="card-body p-md-5 p-3">
