@@ -15,7 +15,7 @@ class EducatriceAdminController extends Controller
     public function index()
     {
         $educatrices = Educatrice::orderBy('created_at', 'desc')->paginate(10);
-        return view('pages.admin.educatrice.index', compact('educatrices'));
+        return view('pages.admin.candidats.index', compact('educatrices'));
     }
 
     /**

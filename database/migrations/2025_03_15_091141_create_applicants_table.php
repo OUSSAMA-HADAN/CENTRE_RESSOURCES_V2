@@ -24,7 +24,6 @@ return new class extends Migration
             $table->unsignedInteger('years_of_experience');
             $table->string('education_level');
             $table->string('reference_number')->unique();
-            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('etablissement');
             $table->text('notes')->nullable();
             $table->timestamps();

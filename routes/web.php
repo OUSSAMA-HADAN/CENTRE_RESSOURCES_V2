@@ -9,6 +9,7 @@ use App\Http\Controllers\FormationController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CandidatController;
+use App\Http\Controllers\Admin\EducatriceAdminController;
 use App\Http\Controllers\Admin\AdminRechercheController;
 use App\Http\Controllers\Admin\AdminDocumentationController;
 use App\Http\Controllers\Admin\AdminFormationController;
@@ -60,7 +61,7 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Candidats Management
-    Route::get('/candidats', [CandidatController::class, 'index'])->name('candidats.index');
+    Route::get('/candidats', [EducatriceAdminController::class, 'index'])->name('candidats.index');
     Route::get('/candidats/{candidat}', [CandidatController::class, 'show'])->name('candidats.show');
     Route::get('/candidats/{candidat}/edit', [CandidatController::class, 'edit'])->name('candidats.edit');
     Route::put('/candidats/{candidat}', [CandidatController::class, 'update'])->name('candidats.update');
@@ -162,13 +163,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
 
 
 // Route pour afficher le formulaire d'inscription approprié selon le type
-Route::get('/inscription/{type?}', function ($type = null) {
-    if ($type === 'educatrice') {
-        return app(App\Http\Controllers\EducatriceController::class)->create();
-    } else {
-        return app(App\Http\Controllers\ApplicantController::class)->create();
-    }
-})->name('inscription.form');
+use App\Http\Controllers\EducatriceController;
+
+Route::get('/inscription', [EducatriceController::class, 'create'])->name('inscription.form');
+Route::get('/inscriptions', [ApplicantController::class, 'create'])->name('inscriptionn.forms');
 
 Route::post('/inscription', [ApplicantController::class, 'store'])->name('inscription.store');
 

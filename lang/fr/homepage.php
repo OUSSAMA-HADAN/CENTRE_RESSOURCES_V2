@@ -5,7 +5,7 @@ return [
     'title_ar' => 'مركز موارد التعليم الأولي - وجدة',
     'register_button' => 'S\'inscrire maintenant',
     'more_info_button' => 'En savoir plus',
-    'disclamer' => "Annonce: l'inscription et ouverte , Cette formation est exclusivement destinée aux éducatrices exerçant actuellement dans le domaine de l'enseignement préscolaire. Elle s'adresse uniquement aux professionnelles en activité. Le nombre de places étant limité, l'inscription est réservée aux participantes répondant à ces critères.",
+    'disclamer' => "Annonce: l'inscription est ouverte , Cette formation est exclusivement destinée aux éducatrices exerçant actuellement dans le domaine de l'enseignement préscolaire. Elle s'adresse uniquement aux professionnelles en activité. Le nombre de places étant limité, l'inscription est réservée aux participantes répondant à ces critères.",
 
     "about" => [
         'title' => 'Bienvenue au Centre de Ressources',

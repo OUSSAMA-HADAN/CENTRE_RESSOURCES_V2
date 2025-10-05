@@ -281,7 +281,7 @@
             html[lang="ar"] .news-ticker-content,
             body[lang="ar"] .news-ticker-content,
             [lang="ar"] .news-ticker-content {
-                animation: scrollNewsRTL 20s linear infinite;
+                animation: scrollNewsRTL 40s linear infinite;
             }
 
             @keyframes scrollNewsRTL {
@@ -594,9 +594,10 @@
                 </div>
                 
                 <!-- Enhanced Main Title - French -->
-                <h1 class="hero-title-gradient fw-bold animate__animated animate__fadeInUp">
+                 <h1 class="display-5 display-md-4 fw-bold mb-2 animate__animated animate__fadeInUp" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
                     Centre de Ressources du Préscolaire - OUJDA
                 </h1>
+                
                 
                 <!-- Enhanced Title in Arabic -->
                 <h2 class="hero-arabic-title fw-bold animate__animated animate__fadeInUp animate__delay-1s">
@@ -610,7 +611,7 @@
                 
                 <!-- Enhanced Action buttons with hover effects -->
                 <div class="d-flex justify-content-center hero-buttons-container animate__animated animate__fadeInUp animate__delay-2s">
-                    <a href="#" class="btn hero-btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#inscriptionModal">
+                    <a href="{{route('inscription.form')}}" class="btn hero-btn-primary shadow-sm">
                         <i class="fas fa-user-plus me-2"></i>{{ __('homepage.register_button') }}
                     </a>
                     <a href="#surNous" class="btn hero-btn-secondary">

@@ -115,7 +115,7 @@
                 </li>
                 <!-- Signup button -->
                 <li class="nav-item ms-md-3 mt-3 mt-md-0">
-                    <a class="btn px-4 py-2 signup-btn" href="#" data-bs-toggle="modal" data-bs-target="#inscriptionModal"
+                    <a class="btn px-4 py-2 signup-btn" href="{{route('inscription.form')}}"
                         style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease;">
                         <i class="fas fa-user-plus me-2"></i>S'inscrire
                     </a>
@@ -177,7 +177,7 @@
                 </a>
             </li>
             <li class="mobile-nav-item mt-4">
-                <a class="btn px-4 py-2 signup-btn w-100" href="#" data-bs-toggle="modal" data-bs-target="#inscriptionModal"
+                <a class="btn px-4 py-2 signup-btn w-100" href="{{route('inscription.form')}}" 
                     style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease;">
                     <i class="fas fa-user-plus me-2"></i>S'inscrire
                 </a>
@@ -201,7 +201,7 @@
 
 
 <!-- Registration options modal -->
-<div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             <div class="modal-header border-0 bg-light">
@@ -210,52 +210,14 @@
             </div>
             <div class="modal-body p-0">
                 <div class="row g-0">
-                    <!-- Option 1: Formation normale -->
-                    <div class="col-12">
-                        <a href="{{ route('inscription.form', ['type' => 'normal']) }}" class="text-decoration-none">
-                            <div class="card border-0 inscription-card normal-card" style="transition: all 0.3s ease;">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon-circle bg-light-orange rounded-circle d-flex align-items-center justify-content-center me-3" 
-                                             style="width: 60px; height: 60px; background-color: rgba(247, 162, 35, 0.15);">
-                                            <i class="fas fa-graduation-cap fa-2x" style="color: #f7a223;"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="fw-bold mb-1">Formation Normale</h5>
-                                            <p class="text-muted mb-0">Programme standard ouvert à tous</p>
-                                        </div>
-                                        <i class="fas fa-chevron-right ms-auto" style="color: #f7a223;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Option 2: Formation pour éducatrices -->
-                    <div class="col-12">
-                        <a href="{{ route('inscription.form', ['type' => 'educatrice']) }}" class="text-decoration-none">
-                            <div class="card border-0 inscription-card educatrice-card" style="transition: all 0.3s ease;">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center">
-                                        <div class="icon-circle bg-light-orange rounded-circle d-flex align-items-center justify-content-center me-3" 
-                                             style="width: 60px; height: 60px; background-color: rgba(247, 162, 35, 0.15);">
-                                            <i class="fas fa-chalkboard-teacher fa-2x" style="color: #f7a223;"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="fw-bold mb-1">Formation pour Éducatrices des écoles privées</h5>
-                                            <p class="text-muted mb-0">Programme spécialisé pour les écoles privées</p>
-                                        </div>
-                                        <i class="fas fa-chevron-right ms-auto" style="color: #f7a223;"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    
+                   
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</div> -->
+<!-- 
 <style>
 .signup-btn {
     position: relative;
@@ -310,9 +272,9 @@
         margin: 1rem;
     }
 }
-</style>
+</style> -->
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Add a subtle animation when the modal opens
     const inscriptionModal = document.getElementById('inscriptionModal');
@@ -337,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-</script>
+</script> -->
 
 
 

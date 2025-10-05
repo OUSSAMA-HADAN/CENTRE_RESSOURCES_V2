@@ -33,6 +33,8 @@ class EducatriceController extends Controller
             'annees_experience' => 'required|integer|min:0',
             'email' => 'nullable|email|max:255|unique:educatrices',
             'telephone' => 'nullable|string|max:20',
+            'type_etablissement' => 'required|in:private,public',
+            'status' => 'pending',
         ]);
 
         if ($validator->fails()) {

@@ -131,13 +131,25 @@
                             </div>
                             
                             <!-- Établissement -->
-                            <div class="col-md-12 mb-3">
-                                <label for="etablissement" class="form-label fw-bold">Établissement/مؤسسة الاشتغال <span class="text-danger">*</span></label>
+                            <div class="col-md-6 mb-3">
+                                <label for="etablissement" class="form-label fw-bold">Nom D'Établissement/اسم مؤسسة الاشتغال <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg @error('etablissement') is-invalid @enderror" 
                                        id="etablissement" name="etablissement" value="{{ old('etablissement') }}" required>
                                 @error('etablissement')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="etablissement" class="form-label fw-bold">type d'institution/ نوع مؤسسة الإشتغال<span class="text-danger">*</span></label>
+                                <select name="type_etablissement" id="type_etablissement" class="form-select form-select-lg @error('type_etablissement') is-invalid @enderror" required>
+                                    <option value="" disabled selected>Choisissez le type d'institution / نوع المؤسسة</option>
+                                    <option value="private" {{ old('type_etablissement') == 'private' ? 'selected' : '' }}>Institution privée / مؤسسة خاصة</option>
+                                    <option value="public" {{ old('type_etablissement') == 'public' ? 'selected' : '' }}>Institution publique / مؤسسة عمومية</option>
+                                </select>
+                                @error('etablissement')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                               
                             </div>
                             
                             <!-- Niveau scolaire -->

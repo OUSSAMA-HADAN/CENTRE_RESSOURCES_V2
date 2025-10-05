@@ -26,6 +26,9 @@ class Educatrice extends Model
         'annees_experience',
         'email',
         'telephone',
+        'type_etablissement',
+        'status',
+
     ];
 
     /**

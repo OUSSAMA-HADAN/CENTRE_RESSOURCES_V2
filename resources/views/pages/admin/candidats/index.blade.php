@@ -61,25 +61,31 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nom complet</th>
-                            <th>Email</th>
+                            <th>Nom</th>
+                            <th>prénom</th>
+                            <th>age</th>
+                            <!-- <th>Email</th> -->
                             <th>Téléphone</th>
                             <th>Etablissement</th>
+                            <th>type d'institution</th>
                             <th>Niveau d'éducation</th>
-                            <th>Statut</th>
                             <th>Date d'inscription</th>
+                            <th>Statut</th>
+                            
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($candidats ?? [] as $candidat)
+                        @forelse($educatrice ?? [] as $educatrice)
                         <tr>
-                            <td>{{ $candidat->id }}</td>
-                            <td>{{ $candidat->first_name }} {{ $candidat->last_name }}</td>
-                            <td>{{ $candidat->email }}</td>
-                            <td>{{ $candidat->phone_number }}</td>
-                            <td>{{ $candidat->etablissement }}</td>
-                            <td>{{ $candidat->education_level }}</td>
+                            <td>{{ $educatrice->id }}</td>
+                            <td>{{ $educatrice->nom_fr }} / {{ $educatrice->nom_ar }}</td>
+                            <td>{{ $educatrice->prenom_fr }} / {{ $educatrice->prenom_ar }}</td>
+
+                            <td>{{ $educatrice->telephone }}</td>
+                            <td>{{ $educatrice->niveau_scolaire }}</td>
+                            <td>{{ $educatrice->education_level }}</td>
+                            <td>{{ $educatrice->created_at->format('d/m/Y') }}</td>
                             <td>
                                 @switch($candidat->status)
                                     @case('pending')
@@ -95,7 +101,7 @@
                                         <span class="badge bg-secondary">Non défini</span>
                                 @endswitch
                             </td>
-                            <td>{{ $candidat->created_at->format('d/m/Y') }}</td>
+                           
                             <td>
                                 <div class="btn-group" role="group">
                                     <a href="{{ route('admin.candidats.show', $candidat->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Voir">
