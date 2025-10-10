@@ -80,31 +80,33 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
     
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+/*
+|--------------------------------------------------------------------------
+| Éducatrices Management
+|--------------------------------------------------------------------------
+*/
+Route::prefix('educatrices')->name('educatrices.')->group(function () {
+    Route::get('/', [EducatriceAdminController::class, 'index'])->name('index');
+    Route::get('/export-excel', [EducatriceAdminController::class, 'exportExcel'])->name('export-excel');
+    Route::post('/bulk-action', [EducatriceAdminController::class, 'bulkAction'])->name('bulk-action');
+    Route::get('/{educatrice}', [EducatriceAdminController::class, 'show'])->name('show');
+    Route::get('/{educatrice}/edit', [EducatriceAdminController::class, 'edit'])->name('edit');
+    Route::put('/{educatrice}', [EducatriceAdminController::class, 'update'])->name('update');
+    Route::patch('/{educatrice}/status', [EducatriceAdminController::class, 'updateStatus'])->name('update-status');
+    Route::delete('/{educatrice}', [EducatriceAdminController::class, 'destroy'])->name('destroy');
+});
 
-    /*
-    |--------------------------------------------------------------------------
-    | Éducatrices Management
-    |--------------------------------------------------------------------------
-    */
-    Route::prefix('educatrices')->name('educatrices.')->group(function () {
-        Route::get('/', [EducatriceAdminController::class, 'index'])->name('index');
-        Route::get('/export', [EducatriceAdminController::class, 'export'])->name('export');
-        Route::get('/{educatrice}', [EducatriceAdminController::class, 'show'])->name('show');
-        Route::get('/{educatrice}/edit', [EducatriceAdminController::class, 'edit'])->name('edit');
-        Route::put('/{educatrice}', [EducatriceAdminController::class, 'update'])->name('update');
-        Route::patch('/{educatrice}/status', [EducatriceAdminController::class, 'updateStatus'])->name('update-status');
-        Route::delete('/{educatrice}', [EducatriceAdminController::class, 'destroy'])->name('destroy');
-    });
-
-    // Alias routes for backward compatibility
-    Route::prefix('candidats')->name('candidats.')->group(function () {
-        Route::get('/', [EducatriceAdminController::class, 'index'])->name('index');
-        Route::get('/{educatrice}', [EducatriceAdminController::class, 'show'])->name('show');
-        Route::get('/{educatrice}/edit', [EducatriceAdminController::class, 'edit'])->name('edit');
-        Route::put('/{educatrice}', [EducatriceAdminController::class, 'update'])->name('update');
-        Route::delete('/{educatrice}', [EducatriceAdminController::class, 'destroy'])->name('destroy');
-    });
-
+// Alias routes for backward compatibility
+Route::prefix('candidats')->name('candidats.')->group(function () {
+    Route::get('/', [EducatriceAdminController::class, 'index'])->name('index');
+    Route::get('/export-excel', [EducatriceAdminController::class, 'exportExcel'])->name('export-excel');
+    Route::get('/export', [EducatriceAdminController::class, 'exportExcel'])->name('export'); // ADD THIS LINE
+    Route::post('/bulk-action', [EducatriceAdminController::class, 'bulkAction'])->name('bulk-action');
+    Route::get('/{educatrice}', [EducatriceAdminController::class, 'show'])->name('show');
+    Route::get('/{educatrice}/edit', [EducatriceAdminController::class, 'edit'])->name('edit');
+    Route::put('/{educatrice}', [EducatriceAdminController::class, 'update'])->name('update');
+    Route::delete('/{educatrice}', [EducatriceAdminController::class, 'destroy'])->name('destroy');
+});
     /*
     |--------------------------------------------------------------------------
     | Recherche Management
@@ -162,3 +164,5 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
         Route::delete('/{formation}', [AdminFormationController::class, 'destroy'])->name('destroy');
     });
 });
+
+
