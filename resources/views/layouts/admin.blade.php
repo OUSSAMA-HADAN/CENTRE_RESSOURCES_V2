@@ -412,13 +412,7 @@
                     <span class="sidebar-text">Candidats</span>
                 </a>
             </li>
-            <li class="{{ request()->routeIs('admin.candidats.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.educatrices.index') }}">
-                    <i class="fas fa-list me-2"></i> 
-                    <span class="sidebar-text">Liste des éducatrices</span>
-                </a>
-            </li>
-
+          
 
 
 

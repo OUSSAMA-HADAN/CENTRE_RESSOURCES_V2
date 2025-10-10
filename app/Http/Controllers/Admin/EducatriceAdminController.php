@@ -23,7 +23,7 @@ class EducatriceAdminController extends Controller
      */
     public function show(Educatrice $educatrice)
     {
-        return view('pages.admin.educatrice.show', compact('educatrice'));
+        return view('pages.admin.candidats.show', compact('educatrice'));
     }
 
     /**

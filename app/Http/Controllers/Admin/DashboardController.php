@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Applicant;
 use App\Models\Recherche;
 use App\Models\Documentation;
 use App\Models\Educatrice;
@@ -22,8 +21,8 @@ class DashboardController extends Controller
         // Get counts for dashboard cards
         $statistics = [
             'applicants' => [
-                'total' => Applicant::count(),
-                'pending' => Applicant::where('status', 'pending')->count(),
+                'total' => Educatrice::count(),
+                'pending' => Educatrice::where('status', 'pending')->count(),
             ],
             'formations' => [
                 'total' => Formation::count(),
@@ -47,7 +46,7 @@ class DashboardController extends Controller
          // Add monthly data for the area chart
         // This example gets data for the last 12 months
         $monthlyData = []; // Format: [['Month', count], ['Month', count]]
-        $recentApplicants = Applicant::latest()->take(10)->get();
+        $recentApplicants = Educatrice::latest()->take(10)->get();
         // Récupération des éducatrices récentes
         $recentEducatrices = Educatrice::latest()->take(5)->get();
         

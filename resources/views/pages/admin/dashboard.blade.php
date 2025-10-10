@@ -199,11 +199,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 text-center">
-                        <a href="{{ route('admin.educatrices.index') }}" class="btn btn-sm btn-danger">
-                            Gérer les éducatrices
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -353,9 +349,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-danger">Éducatrices récentes</h6>
-                    <a href="{{ route('admin.educatrices.index') }}" class="btn btn-sm btn-danger">
-                        Voir tout
-                    </a>
+                    
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -374,14 +368,7 @@
                                     <td>{{ $educatrice->prenom_fr }} {{ $educatrice->nom_fr }}</td>
                                     <td>{{ Str::limit($educatrice->etablissement, 20) }}</td>
                                     <td>{{ $educatrice->created_at->format('d/m/Y') }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.educatrices.show', $educatrice) }}" class="btn btn-info btn-circle btn-sm">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.educatrices.edit', $educatrice) }}" class="btn btn-primary btn-circle btn-sm">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                    </td>
+                                    
                                 </tr>
                                 @empty
                                 <tr>

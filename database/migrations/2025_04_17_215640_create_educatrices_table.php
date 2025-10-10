@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('annees_experience');
             $table->string('email')->unique()->nullable();
             $table->string('telephone')->nullable();
+            $table->date('date_naissance');
             $table->enum('type_etablissement', ['private', 'public']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();

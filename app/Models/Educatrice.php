@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Educatrice extends Model
 {
@@ -26,9 +27,13 @@ class Educatrice extends Model
         'annees_experience',
         'email',
         'telephone',
+        'date_naissance',
         'type_etablissement',
         'status',
 
+    ];
+     protected $casts = [
+        'date_naissance' => 'date',
     ];
 
     /**
@@ -45,5 +50,11 @@ class Educatrice extends Model
     public function getNomCompletArAttribute()
     {
         return $this->prenom_ar . ' ' . $this->nom_ar;
+    }
+    public function getAgeAttribute()
+    {
+        return $this->date_naissance 
+            ? Carbon::parse($this->date_naissance)->age 
+            : null;
     }
 }

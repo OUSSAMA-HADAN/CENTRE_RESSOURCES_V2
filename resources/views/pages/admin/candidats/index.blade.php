@@ -76,18 +76,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($educatrice ?? [] as $educatrice)
+                        @forelse($educatrices ?? [] as $educatrice)
                         <tr>
                             <td>{{ $educatrice->id }}</td>
                             <td>{{ $educatrice->nom_fr }} / {{ $educatrice->nom_ar }}</td>
                             <td>{{ $educatrice->prenom_fr }} / {{ $educatrice->prenom_ar }}</td>
+                            <td>{{ $educatrice->age ?? 'N/A' }} ans</td>
 
                             <td>{{ $educatrice->telephone }}</td>
+                            <td>{{ $educatrice->etablissement }}</td>
+                            <td>{{ $educatrice->type_etablissement }}</td>
                             <td>{{ $educatrice->niveau_scolaire }}</td>
-                            <td>{{ $educatrice->education_level }}</td>
                             <td>{{ $educatrice->created_at->format('d/m/Y') }}</td>
                             <td>
-                                @switch($candidat->status)
+                                @switch($educatrice->status)
                                     @case('pending')
                                         <span class="badge bg-warning text-dark">En attente</span>
                                         @break
@@ -104,17 +106,17 @@
                            
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.candidats.show', $candidat->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Voir">
+                                    <a href="{{ route('admin.candidats.show', $educatrice->id) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" title="Voir">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.candidats.edit', $candidat->id) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Modifier">
+                                    <a href="{{ route('admin.candidats.edit', $educatrice->id) }}" class="btn btn-sm btn-primary" data-bs-toggle="tooltip" title="Modifier">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <button type="button" class="btn btn-sm btn-danger delete-btn" 
                                            data-bs-toggle="modal" 
                                            data-bs-target="#deleteModal" 
-                                           data-id="{{ $candidat->id }}"
-                                           data-name="{{ $candidat->first_name }} {{ $candidat->last_name }}"
+                                           data-id="{{ $educatrice->id }}"
+                                           data-name="{{ $educatrice->first_name }} {{ $educatrice->last_name }}"
                                            title="Supprimer">
                                         <i class="fas fa-trash"></i>
                                     </button>

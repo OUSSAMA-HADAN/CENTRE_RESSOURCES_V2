@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\FormationController;
@@ -62,10 +61,10 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
 
     // Candidats Management
     Route::get('/candidats', [EducatriceAdminController::class, 'index'])->name('candidats.index');
-    Route::get('/candidats/{candidat}', [CandidatController::class, 'show'])->name('candidats.show');
-    Route::get('/candidats/{candidat}/edit', [CandidatController::class, 'edit'])->name('candidats.edit');
-    Route::put('/candidats/{candidat}', [CandidatController::class, 'update'])->name('candidats.update');
-    Route::delete('/candidats/{candidat}', [CandidatController::class, 'destroy'])->name('candidats.destroy');
+    Route::get('/candidats/{candidat}', [EducatriceAdminController::class, 'show'])->name('candidats.show');
+    Route::get('/candidats/{candidat}/edit', [EducatriceAdminController::class, 'edit'])->name('candidats.edit');
+    Route::put('/candidats/{candidat}', [EducatriceAdminController::class, 'update'])->name('candidats.update');
+    Route::delete('/candidats/{candidat}', [EducatriceAdminController::class, 'destroy'])->name('candidats.destroy');
 
     // Admin Recherche Management
     Route::get('/recherche', [AdminRechercheController::class, 'index'])->name('recherche.index');
@@ -76,27 +75,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
     Route::delete('/recherche/{recherche}', [AdminRechercheController::class, 'destroy'])->name('recherche.destroy');
 
 
-
-            // Routes pour les éducatrices
-            Route::get('/educatrices', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'index'])
-            ->name('educatrices.index');
-        
-        Route::get('/educatrices/{educatrice}', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'show'])
-            ->name('educatrices.show');
-        
-        Route::get('/educatrices/{educatrice}/edit', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'edit'])
-            ->name('educatrices.edit');
-        
-        Route::put('/educatrices/{educatrice}', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'update'])
-            ->name('educatrices.update');
-        
-        Route::delete('/educatrices/{educatrice}', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'destroy'])
-            ->name('educatrices.destroy');
-        
-        Route::get('/educatrices-export', [App\Http\Controllers\Admin\EducatriceAdminController::class, 'export'])
-            ->name('educatrices.export');
-        
-        
         
         
 
@@ -166,9 +144,9 @@ Route::prefix('admin')->middleware(['auth:admin'])->name('admin.')->group(functi
 use App\Http\Controllers\EducatriceController;
 
 Route::get('/inscription', [EducatriceController::class, 'create'])->name('inscription.form');
-Route::get('/inscriptions', [ApplicantController::class, 'create'])->name('inscriptionn.forms');
+Route::get('/inscriptions', [EducatriceController::class, 'create'])->name('inscriptionn.forms');
 
-Route::post('/inscription', [ApplicantController::class, 'store'])->name('inscription.store');
+Route::post('/inscription', [EducatriceController::class, 'store'])->name('inscription.store');
 
 // Route pour enregistrer une éducatrice
 Route::post('/inscription/educatrice', [App\Http\Controllers\EducatriceController::class, 'store'])

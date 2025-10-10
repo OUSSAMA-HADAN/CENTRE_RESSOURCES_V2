@@ -117,6 +117,14 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="telephone" class="form-label fw-bold">Date de naissance / تاريخ الميلاد</label>
+                                <input type="date" class="form-control form-control-lg @error('date_naissance') is-invalid @enderror" 
+                                       id="date_naissance" name="date_naissance" value="{{ old('date_naissance') }}">
+                                @error('telephone')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                             
                             <!-- Adresse -->
                             
