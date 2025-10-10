@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- @php dd($formation->formateur) @endphp --}}
 @section('title', $formation->title)
 
 @section('content')

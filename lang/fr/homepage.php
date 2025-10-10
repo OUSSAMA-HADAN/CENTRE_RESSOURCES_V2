@@ -58,4 +58,25 @@ return [
 
         'get_directions' => 'Obtenez l\'itinéraire',
     ],
+    'director' => [
+    'badge' => 'Notre Expert',
+    'title_part1' => 'Rencontrez le',
+    'title_part2' => 'Responsable du Centre',
+    'description' => 'Avec plus de 20 ans d\'expérience dans le domaine de l\'éducation préscolaire, notre responsable est un expert reconnu et formateur principal de ce centre de formation.',
+    'years_experience' => 'Années d\'Expérience',
+    'expertise' => [
+        'formation' => [
+            'title' => 'Formation Spécialisée',
+            'description' => 'Expert en pédagogie préscolaire et développement de l\'enfant'
+        ],
+        'experience' => [
+            'title' => '20+ Ans d\'Expérience',
+            'description' => 'Formateur principal et conseiller pédagogique'
+        ],
+        'pedagogy' => [
+            'title' => 'Méthodes Innovantes',
+            'description' => 'Approches pédagogiques modernes et efficaces'
+        ]
+    ]
+],
 ];

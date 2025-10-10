@@ -91,8 +91,7 @@ class AdminFormationController extends Controller
      */
     public function store(Request $request)
     {
-        // Remove the dd() call that's preventing form submission
-        // dd($request->all());
+        // Validate and store the incoming formation data
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -134,21 +133,8 @@ class AdminFormationController extends Controller
             } else {
                 $formation->duration = 'Non définie';
             }
-            // Formation::create('formation', [
-            //     'title' => $validated['title'],
-            //     'slug' => Str::slug($validated['title']),
-            //     'description' => $validated['description'],
-            //     'content' => $validated['description'], // Using description as content since content isn't in the form
-            //     'start_date' => $validated['start_date'] ?? null,
-            //     'end_date' => $validated['end_date'] ?? null,
-            //     'formateur' => $validated['formateur'],
-            //     'platform' => $validated['platform'],
-            // ]);
-
-            // Location is platform in this case
-            // $formation->location = $validated['platform'];
-
-            // Category (not in the form, setting a default)
+            
+           
             $formation->category = 'online'; // Default category
 
             // Publication status

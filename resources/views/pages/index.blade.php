@@ -1138,6 +1138,167 @@ document.head.appendChild(style);
     
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Director Section - Add this after the "nos unités" section -->
+<section id="director" class="py-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+    <!-- Background Decoration -->
+    <div style="content: ''; position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+    <div style="content: ''; position: absolute; bottom: -30%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+    
+    <div class="container position-relative" style="z-index: 1;">
+        <div class="row align-items-center">
+            <!-- Left Side - Content -->
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="d-inline-block bg-primary text-white px-4 py-2 rounded-pill mb-3" style="font-size: 0.875rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);">
+                    {{ __('homepage.director.badge') }}
+                </div>
+                
+                <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: #1e293b; line-height: 1.2;">
+                    {{ __('homepage.director.title_part1') }} 
+                    <span style="background: linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        {{ __('homepage.director.title_part2') }}
+                    </span>
+                </h2>
+                
+                <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #3b82f6, #10b981); border-radius: 2px; margin: 1.5rem 0;"></div>
+                
+                <p class="mb-4" style="font-size: 1.125rem; color: #475569; line-height: 1.8;">
+                    {{ __('homepage.director.description') }}
+                </p>
+                
+                <!-- Expertise Cards -->
+                <div class="expertise-cards">
+                    <div class="d-flex align-items-center bg-white rounded p-3 mb-3 shadow-sm" style="border-left: 4px solid #3b82f6; transition: all 0.3s ease;">
+                        <div class="d-flex align-items-center justify-content-center rounded me-3" style="width: 50px; height: 50px; background: rgba(59, 130, 246, 0.1); color: #3b82f6; font-size: 1.5rem;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 fw-bold">{{ __('homepage.director.expertise.formation.title') }}</h5>
+                            <p class="mb-0 text-secondary">{{ __('homepage.director.expertise.formation.description') }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center bg-white rounded p-3 mb-3 shadow-sm" style="border-left: 4px solid #10b981; transition: all 0.3s ease;">
+                        <div class="d-flex align-items-center justify-content-center rounded me-3" style="width: 50px; height: 50px; background: rgba(16, 185, 129, 0.1); color: #10b981; font-size: 1.5rem;">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 fw-bold">{{ __('homepage.director.expertise.experience.title') }}</h5>
+                            <p class="mb-0 text-secondary">{{ __('homepage.director.expertise.experience.description') }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center bg-white rounded p-3 shadow-sm" style="border-left: 4px solid #f59e0b; transition: all 0.3s ease;">
+                        <div class="d-flex align-items-center justify-content-center rounded me-3" style="width: 50px; height: 50px; background: rgba(245, 158, 11, 0.1); color: #f59e0b; font-size: 1.5rem;">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1 fw-bold">{{ __('homepage.director.expertise.pedagogy.title') }}</h5>
+                            <p class="mb-0 text-secondary">{{ __('homepage.director.expertise.pedagogy.description') }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Side - Image -->
+            <div class="col-lg-6">
+                <div class="position-relative" style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease;">
+                    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); z-index: 1;"></div>
+                    <img src="{{ asset('storage/images/director-image.jpg') }}" class="img-fluid" alt="Responsable du Centre" style="display: block; width: 100%;">
+                    
+                    <!-- Experience Badge -->
+                    <div class="position-absolute" style="bottom: 20px; right: 20px; background: white; padding: 15px 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); z-index: 2;">
+                        <div style="font-size: 2.5rem; font-weight: 800; background: linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 5px;">
+                            20+
+                        </div>
+                        <div style="font-size: 0.875rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+                            {{ __('homepage.director.years_experience') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Hover effects for expertise cards */
+    .expertise-cards > div:hover {
+        transform: translateX(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+    }
+    
+    /* Image wrapper hover */
+    #director .position-relative:hover {
+        transform: translateY(-10px);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+        #director h2 {
+            font-size: 2rem !important;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        #director h2 {
+            font-size: 1.75rem !important;
+        }
+        
+        .expertise-cards > div {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .expertise-cards > div .me-3 {
+            margin-right: 0 !important;
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     
         <!-- Gallery Section -->
    
