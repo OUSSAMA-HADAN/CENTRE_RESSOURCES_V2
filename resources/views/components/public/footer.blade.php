@@ -34,7 +34,7 @@
                     </li>
                     
                     <li><a href="{{ route('admin.dashboard') }}" class="text-white-50 text-decoration-none"><i
-                                class="fas fa-chevron-right me-2 small"></i>Espace admin</a>
+                                class="fas fa-user-shield me-2 small"></i>Admin</a>
                     </li>
                 </ul>
             </div>
@@ -70,17 +70,7 @@
         <p class="text-white-50 small mb-0">
             &copy; {{ __('footer.copyright') }}
             <br>
-           <!-- <span class="text-white-50 small">
-                Développé par OUSSAMA HEDDANE
-            </span>
-            <span class=" mt-2">
-                <a href="mailto:oussamaheddane1@gmail.com" class="text-white-50 mx-2" title="Email">
-                    <i class="fas fa-envelope fa-lg"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/oussama-heddane-773ab9307/" target="_blank" class="text-white-50 mx-2" title="LinkedIn">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                </a>
-            </span>-->
+          
         </p>
     </div>
 </div>

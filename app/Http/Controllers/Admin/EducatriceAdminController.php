@@ -465,6 +465,28 @@ class EducatriceAdminController extends Controller
                 ->withInput();
         }
     }
+    /**
+ * Update only the status of the specified educatrice.
+ */
+public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|in:pending,approved,rejected',
+    ]);
+
+    try {
+        $educatrice = Educatrice::findOrFail($id);
+        $educatrice->update(['status' => $request->status]);
+
+        return redirect()
+            ->route('admin.educatrices.show', $educatrice)
+            ->with('success', 'Le statut a été mis à jour avec succès.');
+    } catch (\Exception $e) {
+        return redirect()
+            ->back()
+            ->with('error', 'Une erreur est survenue lors de la mise à jour du statut.');
+    }
+}
 
     /**
      * Remove the specified educatrice from storage (soft delete).

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-dark shadow-lg fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-lg fixed-top">
     <div class="container-fluid">
         <!-- Logo with hover effect -->
-        <a class="navbar-brand d-flex align-items-center " href="{{ route('home') }}">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <div class="logo-container position-relative overflow-hidden">
                 <img src="{{ asset('storage/images/logo.png') }}" alt="Logo" height="60" class="logo-image">
                 <div class="logo-overlay"></div>
@@ -10,7 +10,7 @@
         </a>
 
         <!-- Language switcher for mobile (visible outside sidebar) -->
-        <div class="d-md-none me-2">
+        <div class="d-lg-none me-2">
             <div class="dropdown">
                 <button class="btn btn-sm text-white dropdown-toggle language-btn" type="button" id="mobileLangDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-globe me-1"></i>
@@ -36,15 +36,15 @@
 
         <!-- Navigation items with indicator for desktop -->
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-md-center">
-                <li class="nav-item position-relative mx-md-1">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item position-relative mx-lg-1">
                     <a class="nav-link text-light px-3 py-2 {{ request()->routeIs('home') && !request()->routeIs('inscription.*') ? 'active' : '' }}" href="{{ route('home') }}#hero" data-section="hero">
                         <i class="fas fa-home me-1"></i>
                         <span>{{ __('header.home') }}</span>
                     </a>
                     <span class="nav-indicator"></span>
                 </li>
-                <li class="nav-item position-relative mx-md-1">
+                <li class="nav-item position-relative mx-lg-1">
                     <a class="nav-link text-light px-3 py-2" href="{{ route('home') }}#surNous" data-section="surNous">
                         <i class="fas fa-info-circle me-1"></i>
                         <span>{{ __('header.about') }}</span>
@@ -52,7 +52,7 @@
                     <span class="nav-indicator"></span>
                 </li>
                 <!-- Dropdown Menu -->
-                <li class="nav-item dropdown position-relative mx-md-1">
+                <li class="nav-item dropdown position-relative mx-lg-1">
                     <a class="nav-link dropdown-toggle text-light px-3 py-2" href="{{ route('home') }}#units" 
                        id="servicesDropdown"
                        role="button" 
@@ -86,40 +86,36 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item position-relative mx-md-1">
+                <li class="nav-item position-relative mx-lg-1">
                     <a class="nav-link text-light px-3 py-2" href="{{ route('home') }}#gallery" data-section="gallery">
                         <i class="fas fa-images me-1"></i>
                         <span>{{ __('header.gallery') }}</span>
                     </a>
                     <span class="nav-indicator"></span>
                 </li>
-                <li class="nav-item position-relative mx-md-1">
+                <li class="nav-item position-relative mx-lg-1">
                     <a class="nav-link text-light px-3 py-2" href="{{ route('home') }}#location" data-section="location">
                         <i class="fas fa-map-marker-alt me-1"></i>
                         <span>{{ __('header.location') }}</span>
                     </a>
                     <span class="nav-indicator"></span>
                 </li>
-                <!-- Language switcher -->
-                <li class="nav-item dropdown position-relative mx-md-1">
-                    <a class="nav-link dropdown-toggle text-light px-3 py-2" href="#" id="languageDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-globe me-1"></i>
-                        <span>{{ app()->getLocale() == 'fr' ? 'FR' : 'AR' }}</span>
-                    </a>
-                    <span class="nav-indicator"></span>
-                    <ul class="dropdown-menu dropdown-menu-end animated fadeIn" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
-                        <li><a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
-                    </ul>
-                </li>
-                <!-- Signup button -->
-                <li class="nav-item ms-md-3 mt-3 mt-md-0">
-                    <a class="btn px-4 py-2 signup-btn" href="{{route('inscription.form')}}"
-                        style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease;">
-                        <i class="fas fa-user-plus me-2"></i>S'inscrire
-                    </a>
-                </li>
+               <!-- Language switcher - FIXED -->
+<li class="nav-item dropdown position-relative mx-lg-1 d-none d-lg-block">
+    <a class="nav-link dropdown-toggle text-light px-3 py-2" href="#" 
+       id="languageDropdown"
+       role="button" 
+       data-bs-toggle="dropdown" 
+       aria-expanded="false">
+        <i class="fas fa-globe me-1"></i>
+        <span>{{ app()->getLocale() == 'fr' ? 'FR' : 'AR' }}</span>
+    </a>
+    <span class="nav-indicator"></span>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+        <li><a class="dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
+        <li><a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
+    </ul>
+</li>
             </ul>
         </div>
     </div>
@@ -176,6 +172,18 @@
                     <span>{{ __('header.location') }}</span>
                 </a>
             </li>
+            <!-- Mobile Language Switcher -->
+            <li class="mobile-nav-item mobile-dropdown">
+                <div class="mobile-nav-link mobile-dropdown-toggle">
+                    <i class="fas fa-globe me-2"></i>
+                    <span>{{ app()->getLocale() == 'fr' ? 'Français' : 'العربية' }}</span>
+                    <i class="fas fa-chevron-down ms-auto dropdown-icon"></i>
+                </div>
+                <ul class="mobile-dropdown-menu">
+                    <li><a class="mobile-dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
+                    <li><a class="mobile-dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
+                </ul>
+            </li>
             <li class="mobile-nav-item mt-4">
                 <a class="btn px-4 py-2 signup-btn w-100" href="{{route('inscription.form')}}" 
                     style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease;">
@@ -189,152 +197,13 @@
 <!-- Overlay for mobile sidebar -->
 <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-<!-- Registration options modal -->
-<!-- <div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-            <div class="modal-header border-0 bg-light">
-                <h5 class="modal-title fw-bold" id="inscriptionModalLabel">Choisissez votre type de formation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-0">
-                <div class="row g-0">
-                    
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- 
-<style>
-.signup-btn {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    z-index: 1;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    font-weight: 600;
-}
-
-.signup-btn:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: all 0.6s ease;
-    z-index: -1;
-}
-
-.signup-btn:hover:before {
-    left: 100%;
-}
-
-.signup-btn:hover {
-    transform: translateY(-2px);
-    background-color: #e89417 !important;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    color: #fff;
-}
-
-.inscription-card {
-    cursor: pointer;
-    border-left: 4px solid transparent;
-}
-
-.inscription-card:hover {
-    background-color: #fff8ee;
-    transform: translateX(5px);
-    border-left: 4px solid #f7a223;
-}
-
-.normal-card {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-@media (max-width: 767.98px) {
-    .modal-dialog {
-        margin: 1rem;
-    }
-}
-</style> -->
-
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Add a subtle animation when the modal opens
-    const inscriptionModal = document.getElementById('inscriptionModal');
-    if (inscriptionModal) {
-        inscriptionModal.addEventListener('show.bs.modal', function (event) {
-            setTimeout(function() {
-                const cards = document.querySelectorAll('.inscription-card');
-                cards.forEach((card, index) => {
-                    setTimeout(function() {
-                        card.classList.add('animate__animated', 'animate__fadeInRight');
-                    }, index * 150);
-                });
-            }, 200);
-        });
-        
-        // Reset animations when modal closes
-        inscriptionModal.addEventListener('hidden.bs.modal', function (event) {
-            const cards = document.querySelectorAll('.inscription-card');
-            cards.forEach(card => {
-                card.classList.remove('animate__animated', 'animate__fadeInRight');
-            });
-        });
-    }
-});
-</script> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
     /* Navbar styling */
     .navbar {
         background-color: rgba(16, 185, 129, 0.95);
         backdrop-filter: blur(5px);
         transition: all 0.3s ease;
-        padding: 15px 0;
+        padding: 12px 0;
         z-index: 1030;
     }
 
@@ -383,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .site-title {
         font-weight: 700;
         letter-spacing: 0.5px;
+        font-size: 1.1rem;
     }
 
     /* Nav indicator for active state */
@@ -417,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         position: relative;
         transition: all 0.3s ease;
         border-radius: 6px;
+        font-size: 0.95rem;
     }
 
     .navbar-nav .nav-link:hover {
@@ -465,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         color: #fff;
         font-weight: 600;
+        font-size: 0.9rem;
     }
 
     .signup-btn:before {
@@ -487,9 +359,10 @@ document.addEventListener('DOMContentLoaded', function() {
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         color: #fff;
+        background-color: #e89417 !important;
     }
 
-    /* Dropdown styling */
+    /* Dropdown styling - FIXED FOR DESKTOP LANGUAGE SWITCHER */
     .dropdown-menu {
         background-color: #fff;
         border: none;
@@ -498,6 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 10px;
         margin-top: 10px;
         min-width: 200px;
+        z-index: 1031; /* Ensure dropdown appears above navbar */
     }
 
     .dropdown-item {
@@ -505,6 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 10px 15px;
         border-radius: 5px;
         transition: all 0.2s ease;
+        font-size: 0.9rem;
     }
 
     .dropdown-item:hover {
@@ -532,7 +407,6 @@ document.addEventListener('DOMContentLoaded', function() {
             opacity: 0;
             transform: translateY(-10px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
@@ -554,8 +428,9 @@ document.addEventListener('DOMContentLoaded', function() {
     .mobile-sidebar {
         position: fixed;
         top: 0;
-        right: -280px;
-        width: 280px;
+        right: -320px;
+        width: 320px;
+        max-width: 85vw;
         height: 100vh;
         background-color: #10b981;
         z-index: 1040;
@@ -584,6 +459,11 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.5rem;
         cursor: pointer;
         padding: 0.5rem;
+        transition: transform 0.2s ease;
+    }
+
+    .close-sidebar:hover {
+        transform: scale(1.1);
     }
 
     .mobile-nav {
@@ -605,6 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
         border-radius: 0.5rem;
         transition: all 0.2s ease;
         cursor: pointer;
+        font-size: 1rem;
     }
 
     .mobile-nav-link:hover, 
@@ -621,10 +502,13 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 0.5rem 0 0.5rem 1.5rem;
         margin-top: 0.25rem;
         display: none;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 0.5rem;
     }
 
     .mobile-dropdown-menu.show {
         display: block;
+        animation: fadeIn 0.3s ease;
     }
 
     .mobile-dropdown-item {
@@ -634,9 +518,11 @@ document.addEventListener('DOMContentLoaded', function() {
         text-decoration: none;
         border-radius: 0.5rem;
         transition: all 0.2s ease;
+        font-size: 0.95rem;
     }
 
-    .mobile-dropdown-item:hover {
+    .mobile-dropdown-item:hover,
+    .mobile-dropdown-item.active {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -659,9 +545,107 @@ document.addEventListener('DOMContentLoaded', function() {
         visibility: visible;
     }
 
-    /* Hide desktop navbar on mobile */
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .navbar {
+            padding: 10px 0;
+        }
+        
+        .site-title {
+            font-size: 1rem;
+        }
+        
+        .navbar-nav .nav-link {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+        
+        .signup-btn {
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+        }
+    }
+
     @media (max-width: 767.98px) {
+        .navbar {
+            padding: 8px 0;
+        }
+        
+        .logo-image {
+            height: 50px !important;
+        }
+        
+        .site-title {
+            font-size: 0.9rem;
+        }
+        
+        .mobile-sidebar {
+            width: 280px;
+        }
+        
+        .mobile-nav-link {
+            font-size: 0.95rem;
+            padding: 0.7rem 1rem;
+        }
+        
+        .mobile-dropdown-item {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .mobile-sidebar {
+            width: 260px;
+        }
+        
+        .mobile-nav-link {
+            font-size: 0.9rem;
+            padding: 0.6rem 0.9rem;
+        }
+        
+        .signup-btn {
+            font-size: 0.8rem;
+            padding: 0.6rem 1rem;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .mobile-sidebar {
+            width: 240px;
+            padding: 0.75rem;
+        }
+        
+        .mobile-nav-link {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+        }
+        
+        .mobile-dropdown-item {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.75rem;
+        }
+    }
+
+    /* Hide desktop navbar on mobile */
+    @media (max-width: 991.98px) {
         .navbar-collapse {
+            display: none !important;
+        }
+    }
+
+    /* Show desktop navbar on larger screens */
+    @media (min-width: 992px) {
+        .mobile-sidebar,
+        .sidebar-overlay {
+            display: none !important;
+        }
+        
+        #mobile-menu-toggle {
+            display: none !important;
+        }
+        
+        .d-lg-none {
             display: none !important;
         }
     }
@@ -679,26 +663,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
 
         // Function to handle navbar color change on scroll
-        window.addEventListener('scroll', function() {
+        function handleNavbarScroll() {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+        }
+
+        window.addEventListener('scroll', handleNavbarScroll);
 
         // Function to open mobile sidebar
         function openSidebar() {
             mobileSidebar.classList.add('active');
             sidebarOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when sidebar is open
+            document.body.style.overflow = 'hidden';
         }
 
         // Function to close mobile sidebar
         function closeSidebarMenu() {
             mobileSidebar.classList.remove('active');
             sidebarOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Re-enable scrolling
+            document.body.style.overflow = '';
+            // Close all dropdowns when closing sidebar
+            document.querySelectorAll('.mobile-dropdown-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+            // Reset dropdown icons
+            document.querySelectorAll('.dropdown-icon').forEach(icon => {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            });
         }
 
         // Open sidebar when clicking hamburger menu
@@ -718,35 +713,46 @@ document.addEventListener('DOMContentLoaded', function() {
         // Toggle dropdown menus in mobile sidebar
         mobileDropdownToggles.forEach(toggle => {
             toggle.addEventListener('click', function(e) {
-                e.stopPropagation(); // Empêche la propagation de l'événement
+                e.preventDefault();
+                e.stopPropagation();
                 
-                // Trouver le menu déroulant
                 const dropdownMenu = this.nextElementSibling;
                 const dropdownIcon = this.querySelector('.dropdown-icon');
                 
-                // Basculer la classe show
+                // Close all other dropdowns
+                document.querySelectorAll('.mobile-dropdown-menu').forEach(menu => {
+                    if (menu !== dropdownMenu) {
+                        menu.classList.remove('show');
+                    }
+                });
+                
+                // Reset all other dropdown icons
+                document.querySelectorAll('.dropdown-icon').forEach(icon => {
+                    if (icon !== dropdownIcon) {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+                
+                // Toggle current dropdown
                 dropdownMenu.classList.toggle('show');
                 
-                // Changer l'icône en fonction de l'état
+                // Toggle icon
                 if (dropdownMenu.classList.contains('show')) {
-                    if (dropdownIcon) {
-                        dropdownIcon.classList.remove('fa-chevron-down');
-                        dropdownIcon.classList.add('fa-chevron-up');
-                    }
+                    dropdownIcon.classList.remove('fa-chevron-down');
+                    dropdownIcon.classList.add('fa-chevron-up');
                 } else {
-                    if (dropdownIcon) {
-                        dropdownIcon.classList.remove('fa-chevron-up');
-                        dropdownIcon.classList.add('fa-chevron-down');
-                    }
+                    dropdownIcon.classList.remove('fa-chevron-up');
+                    dropdownIcon.classList.add('fa-chevron-down');
                 }
             });
         });
 
-        // Empêcher les liens du menu déroulant de fermer le sidebar immédiatement
+        // Handle dropdown item clicks
         const dropdownItems = document.querySelectorAll('.mobile-dropdown-item');
         dropdownItems.forEach(item => {
-            item.addEventListener('click', function(e) {
-                setTimeout(closeSidebarMenu, 100);
+            item.addEventListener('click', function() {
+                closeSidebarMenu();
             });
         });
 
@@ -754,12 +760,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const sections = document.querySelectorAll('section[id]');
 
         function setActiveLinks() {
-            // Si on est sur une autre page que home, ne pas activer les liens basés sur le scroll
+            // If we're not on home page, don't activate scroll-based links
             if (!window.location.pathname.endsWith('/') && !window.location.href.includes('#')) {
                 return;
             }
+            
             let current = '';
-            const scrollPosition = window.scrollY + 200;
+            const scrollPosition = window.scrollY + 100;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -806,5 +813,29 @@ document.addEventListener('DOMContentLoaded', function() {
         setActiveLinks();
         window.addEventListener('scroll', setActiveLinks);
         window.addEventListener('resize', setActiveLinks);
+
+        // Close sidebar on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileSidebar.classList.contains('active')) {
+                closeSidebarMenu();
+            }
+        });
+
+        // Initialize navbar state
+        handleNavbarScroll();
+
+        // FIX: Ensure Bootstrap dropdowns work properly
+        // Initialize all Bootstrap dropdowns
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+        var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl)
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        document.querySelectorAll('.dropdown-menu').forEach(function (dropdown) {
+            dropdown.addEventListener('click', function (e) {
+                e.stopPropagation();
+            });
+        });
     });
 </script>

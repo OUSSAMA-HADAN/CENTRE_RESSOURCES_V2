@@ -62,7 +62,7 @@ return [
     'badge' => 'Notre Expert',
     'title_part1' => 'Rencontrez le',
     'title_part2' => 'Responsable du Centre',
-    'description' => 'Avec plus de 20 ans d\'expérience dans le domaine de l\'éducation préscolaire, notre responsable est un expert reconnu et formateur principal de ce centre de formation.',
+    'description' => 'MR MASSAOUDI FOUAD , Avec plus de 20 ans d\'expérience dans le domaine de l\'éducation préscolaire, notre responsable est un expert reconnu et formateur principal de ce centre de formation.',
     'years_experience' => 'Années d\'Expérience',
     'expertise' => [
         'formation' => [
