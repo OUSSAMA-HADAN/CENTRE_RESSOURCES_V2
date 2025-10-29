@@ -60,26 +60,28 @@
     <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('storage/images/logo.png') }}">
 
-    <!-- Font Awesome CDN (for icons) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css">
+    <!-- FontAwesome CDN (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- DNS Prefetch and Preconnect for external resources -->
-    {{-- <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    
-    Preload critical resources
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" as="style"> --}}
-
-    <!-- Local CSS will be loaded via Vite -->
-
-    <!-- CDN CSS (only for external libraries) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-    <!-- Local CSS (includes Bootstrap) -->
-    @vite(['resources/css/app.css'])
+    <!-- Local CSS (includes Bootstrap, Animate.css, Summernote, Swiper) -->
+    @if(app()->environment('local') && file_exists(base_path('public/hot')))
+        {{-- Development: Use Vite dev server --}}
+        @vite(['resources/css/app.css'])
+    @else
+        {{-- Production: Use compiled assets --}}
+        @php
+            $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? null;
+        @endphp
+        @if($cssFile)
+            <link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}">
+        @else
+            <style>
+                /* Fallback styles */
+                body { font-family: system-ui, -apple-system, sans-serif; }
+            </style>
+        @endif
+    @endif
 
 
 
@@ -121,15 +123,78 @@
 
     <!-- Local JS will be loaded via Vite -->
 
-    <!-- CDN JS (only for external libraries) -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- Local JS (includes Bootstrap, jQuery, Popper.js, Summernote, Swiper) -->
+        @if(app()->environment('local') && file_exists(base_path('public/hot')))
+            {{-- Development: Use Vite dev server --}}
+            @vite(['resources/js/app.js'])
+        @else
+            {{-- Production: Use compiled assets --}}
+            @php
+                $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+                $jsFile = $manifest['resources/js/app.js']['file'] ?? null;
+                $vendorFile = $manifest['resources/js/app.js']['imports'][0] ?? null;
+                $swiperFile = $manifest['resources/js/app.js']['imports'][1] ?? null;
+            @endphp
+            @if($jsFile)
+                @if($vendorFile && isset($manifest[$vendorFile]))
+                    <script src="{{ asset('build/' . $manifest[$vendorFile]['file']) }}"></script>
+                @endif
+                @if($swiperFile && isset($manifest[$swiperFile]))
+                    <script src="{{ asset('build/' . $manifest[$swiperFile]['file']) }}"></script>
+                @endif
+                <script src="{{ asset('build/' . $jsFile) }}"></script>
+            @endif
+        @endif
 
-    <!-- Local JS (includes Bootstrap, jQuery, Popper.js) -->
-    @vite(['resources/js/app.js'])
+        <!-- Debug Script for Development -->
+        @if(config('app.debug'))
+        <script>
+        console.log('🔍 Debug Mode Active');
+        console.log('📱 Screen Size:', window.innerWidth + 'x' + window.innerHeight);
+        console.log('🌐 User Agent:', navigator.userAgent);
+        
+        // Check if assets are loading
+        window.addEventListener('load', function() {
+            console.log('✅ Page fully loaded');
+            
+            // Check for missing images
+            const images = document.querySelectorAll('img');
+            images.forEach((img, index) => {
+                if (!img.complete || img.naturalHeight === 0) {
+                    console.error('❌ Image failed to load:', img.src);
+                } else {
+                    console.log('✅ Image loaded:', img.src);
+                }
+            });
+            
+            // Check for missing CSS
+            const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+            stylesheets.forEach((link, index) => {
+                console.log('📄 CSS loaded:', link.href);
+            });
+            
+            // Check for missing JS
+            const scripts = document.querySelectorAll('script[src]');
+            scripts.forEach((script, index) => {
+                console.log('📜 JS loaded:', script.src);
+            });
+        });
+        
+        // Monitor network errors
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                console.error('❌ Image load error:', e.target.src);
+            } else if (e.target.tagName === 'LINK') {
+                console.error('❌ CSS load error:', e.target.href);
+            } else if (e.target.tagName === 'SCRIPT') {
+                console.error('❌ JS load error:', e.target.src);
+            }
+        });
+        </script>
+        @endif
 
-    <!-- Additional Scripts -->
-    @stack('scripts')
+        <!-- Additional Scripts -->
+        @stack('scripts')
 
     <!-- CDN JS - Now loaded via Vite bundles -->
     {{-- Bootstrap and Swiper are now bundled via Vite in app.js to avoid duplication --}}

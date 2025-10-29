@@ -3,8 +3,9 @@ import * as bootstrap from 'bootstrap';
 import $ from 'jquery';
 import { Swiper } from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'summernote/dist/summernote-bs4.min.js';
 
-// Make Bootstrap, jQuery, and Swiper available globally
+// Make Bootstrap, jQuery, Swiper, and Summernote available globally
 window.bootstrap = bootstrap;
 window.$ = window.jQuery = $;
 window.Swiper = Swiper;
@@ -18,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize Bootstrap popovers
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
   const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+  // Initialize Bootstrap dropdowns
+  const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
+  const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
 
   // Handle smooth scrolling for anchor links
   document.querySelectorAll('a[href*="#"]').forEach(anchor => {

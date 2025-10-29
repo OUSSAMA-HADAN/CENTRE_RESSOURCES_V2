@@ -6,9 +6,40 @@
     <meta name="description" content="Centre de Ressources du Préscolaire - Administration">
     <title>Centre de Ressources du Préscolaire - Admin</title>
     
-    <!-- Local CSS will be loaded via Vite -->
+    <!-- FontAwesome CDN (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Local CSS will be loaded via Vite -->
+    @if(app()->environment('local') && file_exists(base_path('public/hot')))
+        {{-- Development: Use Vite dev server --}}
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        {{-- Production: Use compiled assets --}}
+        @php
+            $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? null;
+            $jsFile = $manifest['resources/js/app.js']['file'] ?? null;
+            $vendorFile = $manifest['resources/js/app.js']['imports'][0] ?? null;
+            $swiperFile = $manifest['resources/js/app.js']['imports'][1] ?? null;
+        @endphp
+        @if($cssFile)
+            <link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}">
+        @else
+            <style>
+                /* Fallback styles */
+                body { font-family: system-ui, -apple-system, sans-serif; }
+            </style>
+        @endif
+        @if($jsFile)
+            @if($vendorFile && isset($manifest[$vendorFile]))
+                <script src="{{ asset('build/' . $manifest[$vendorFile]['file']) }}"></script>
+            @endif
+            @if($swiperFile && isset($manifest[$swiperFile]))
+                <script src="{{ asset('build/' . $manifest[$swiperFile]['file']) }}"></script>
+            @endif
+            <script src="{{ asset('build/' . $jsFile) }}"></script>
+        @endif
+    @endif
     <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
 
     <style>

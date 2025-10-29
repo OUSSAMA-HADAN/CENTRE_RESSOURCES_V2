@@ -20,6 +20,13 @@ use App\Http\Controllers\Admin\AdminFormationController;
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// Debug route (only in development)
+if (config('app.debug')) {
+    Route::get('/debug', function () {
+        return view('debug');
+    })->name('debug');
+}
+
 // Language Switcher
 Route::get('/language/{locale}', function ($locale) {
     if (in_array($locale, ['fr', 'ar'])) {

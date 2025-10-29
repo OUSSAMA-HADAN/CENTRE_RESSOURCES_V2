@@ -9,11 +9,15 @@
     .hero-section {
         position: relative;
         height: 100vh;
+        min-height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
         background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        /* Account for fixed header - use calc to ensure proper spacing */
+        padding-top: calc(80px + env(safe-area-inset-top, 0px));
+        box-sizing: border-box;
     }
 
     .hero-background {
@@ -34,6 +38,9 @@
         color: white;
         max-width: 800px;
         padding: 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 2rem; /* Ensure space above waves */
     }
 
     .hero-logo {
@@ -42,7 +49,7 @@
     }
 
     .hero-logo img {
-        max-height: 120px;
+        max-height: 150px;
         width: auto;
         filter: brightness(0) invert(1);
         transition: transform 0.3s ease;
@@ -62,6 +69,9 @@
         margin-bottom: 1rem;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         animation: fadeInUp 1s ease-out 0.2s both;
+        line-height: 1.1;
+        word-wrap: break-word;
+        hyphens: auto;
     }
 
     .hero-title-ar {
@@ -71,6 +81,9 @@
         opacity: 0.95;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         animation: fadeInUp 1s ease-out 0.4s both;
+        line-height: 1.2;
+        word-wrap: break-word;
+        hyphens: auto;
     }
 
     .hero-divider {
@@ -102,6 +115,10 @@
         font-weight: 500;
         backdrop-filter: blur(10px);
         transition: all 0.3s ease;
+        min-height: 44px; /* Touch-friendly minimum size */
+        min-width: 44px;
+        justify-content: center;
+        text-align: center;
     }
 
     .hero-link:hover {
@@ -165,6 +182,9 @@
 
     .hero-announcement {
         animation: fadeInUp 1s ease-out 1s both;
+        position: relative;
+        z-index: 3; /* Above waves */
+        margin-bottom: 2rem; /* Add space before waves */
     }
 
     .announcement-content {
@@ -177,6 +197,8 @@
         backdrop-filter: blur(10px);
         max-width: 600px;
         margin: 0 auto;
+        position: relative;
+        z-index: 3; /* Above waves */
     }
 
     .hero-waves {
@@ -186,8 +208,9 @@
         right: 0;
         width: 100%;
         height: 120px;
-        z-index: 1;
+        z-index: 1; /* Below content */
         line-height: 0;
+        pointer-events: none; /* Prevent interference with content */
     }
 
     .hero-waves svg {
@@ -261,26 +284,116 @@
         }
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    /* Enhanced Responsive Design */
+    
+    /* Large tablets and small desktops */
+    @media (max-width: 1200px) {
+        .hero-title-fr {
+            font-size: 2.5rem;
+        }
+        
+        .hero-title-ar {
+            font-size: 1.6rem;
+        }
+        
+        .hero-logo img {
+            max-height: 120px;
+        }
+    }
+    
+    /* Tablets */
+    @media (max-width: 992px) {
+        .hero-section {
+            height: 100vh;
+            min-height: 600px;
+            padding-top: 70px; /* Tablets */
+        }
+        
         .hero-title-fr {
             font-size: 2.2rem;
+            line-height: 1.2;
         }
         
         .hero-title-ar {
             font-size: 1.4rem;
+            line-height: 1.3;
         }
         
         .hero-logo img {
-            max-height: 80px;
+            max-height: 100px;
         }
         
         .hero-content {
-            padding: 0 15px;
+            padding: 0 20px;
+            max-width: 700px;
         }
         
         .hero-waves {
             height: 100px;
+        }
+        
+        .announcement-content {
+            font-size: 0.9rem;
+            padding: 15px 20px;
+            margin-bottom: 1rem; /* Extra space on tablets */
+        }
+    }
+    
+    /* Mobile landscape and small tablets */
+    @media (max-width: 768px) {
+        .hero-section {
+            height: 100vh;
+            min-height: 500px;
+            padding-top: 120px !important; /* Force extra padding for mobile - header overlap fix */
+        }
+        
+        .hero-title-fr {
+            font-size: 1.9rem;
+            line-height: 1.1;
+            margin-bottom: 0.8rem;
+        }
+        
+        .hero-title-ar {
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+        
+        .hero-logo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-logo img {
+            max-height: 85px;
+        }
+        
+        .hero-content {
+            padding: 0 15px;
+            max-width: 600px;
+        }
+        
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .hero-actions {
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-link {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .hero-waves {
+            height: 80px;
+        }
+        
+        .announcement-content {
+            font-size: 0.85rem;
+            padding: 12px 15px;
+            margin-bottom: 1rem; /* Extra space on mobile */
         }
         
         .notification-badge {
@@ -291,32 +404,68 @@
             right: -6px;
         }
     }
-
+    
+    /* Mobile portrait */
     @media (max-width: 576px) {
+        .hero-section {
+            height: 100vh;
+            min-height: 450px;
+            padding-top: 130px !important; /* Force extra padding for small mobile - header overlap fix */
+        }
+        
         .hero-title-fr {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
         }
         
         .hero-title-ar {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-logo {
+            margin-bottom: 1.2rem;
         }
         
         .hero-logo img {
-            max-height: 60px;
+            max-height: 75px;
+        }
+        
+        .hero-content {
+            padding: 0 12px;
+            max-width: 100%;
+        }
+        
+        .hero-titles {
+            margin-bottom: 1.2rem;
         }
         
         .hero-divider {
-            width: 80px;
+            width: 60px;
             height: 2px;
+            margin: 0 auto 1.2rem;
         }
         
-        .announcement-content {
+        .hero-actions {
+            margin-bottom: 1.2rem;
+        }
+        
+        .hero-link {
+            padding: 8px 16px;
             font-size: 0.85rem;
-            padding: 12px 15px;
+            gap: 0.4rem;
         }
         
         .hero-waves {
-            height: 80px;
+            height: 60px;
+        }
+        
+        .announcement-content {
+            font-size: 0.8rem;
+            padding: 10px 12px;
+            line-height: 1.3;
+            margin-bottom: 1rem; /* Extra space on small mobile */
         }
         
         .notification-badge {
@@ -327,7 +476,214 @@
             right: -5px;
         }
     }
+    
+    /* Very small screens */
+    @media (max-width: 480px) {
+        .hero-section {
+            height: 100vh;
+            min-height: 400px;
+            padding-top: 140px !important; /* Force extra padding for very small screens - header overlap fix */
+        }
+        
+        .hero-title-fr {
+            font-size: 1.4rem;
+            line-height: 1.1;
+        }
+        
+        .hero-title-ar {
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-logo img {
+            max-height: 65px;
+        }
+        
+        .hero-content {
+            padding: 0 10px;
+        }
+        
+        .hero-link {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+        
+        .hero-waves {
+            height: 50px;
+        }
+        
+        .announcement-content {
+            font-size: 0.75rem;
+            padding: 8px 10px;
+            margin-bottom: 1rem; /* Extra space on very small screens */
+        }
+        
+        .notification-badge {
+            width: 16px;
+            height: 16px;
+            font-size: 0.6rem;
+            top: -4px;
+            right: -4px;
+        }
+    }
+    
+    /* Extra small screens */
+    @media (max-width: 360px) {
+        .hero-section {
+            padding-top: 150px !important; /* Force extra padding for extra small screens - header overlap fix */
+        }
+    }
+    
+    /* Additional mobile-specific fixes */
+    @media (max-width: 768px) {
+        .hero-section {
+            /* Force the hero content to start below the header */
+            margin-top: 0 !important;
+            padding-top: 120px !important;
+        }
+        
+        .hero-content {
+            /* Ensure content is positioned correctly */
+            position: relative;
+            z-index: 10;
+            margin-top: 0 !important;
+        }
+    }
+    
+    /* Universal fix for all screen sizes - deployment safety */
+    .hero-section {
+        /* Ensure minimum padding to prevent header overlap */
+        padding-top: max(80px, env(safe-area-inset-top, 0px) + 80px) !important;
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            padding-top: max(120px, env(safe-area-inset-top, 0px) + 120px) !important;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .hero-section {
+            padding-top: max(130px, env(safe-area-inset-top, 0px) + 130px) !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-section {
+            padding-top: max(140px, env(safe-area-inset-top, 0px) + 140px) !important;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .hero-section {
+            padding-top: max(150px, env(safe-area-inset-top, 0px) + 150px) !important;
+        }
+    }
+    
+    @media (max-width: 360px) {
+        .hero-logo img {
+            max-height: 55px;
+        }
+        
+        .hero-link {
+            padding: 5px 10px;
+            font-size: 0.75rem;
+        }
+    }
+    
+    /* Landscape orientation adjustments */
+    @media (max-height: 500px) and (orientation: landscape) {
+        .hero-section {
+            height: 100vh;
+            min-height: 100vh;
+            padding-top: 50px; /* Landscape */
+        }
+        
+        .hero-logo {
+            margin-bottom: 1rem;
+        }
+        
+        .hero-logo img {
+            max-height: 60px;
+        }
+        
+        .hero-title-fr {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-title-ar {
+            font-size: 1rem;
+        }
+        
+        .hero-titles {
+            margin-bottom: 1rem;
+        }
+        
+        .hero-divider {
+            margin: 0 auto 1rem;
+        }
+        
+        .hero-actions {
+            margin-bottom: 1rem;
+        }
+        
+        .hero-announcement {
+            display: none; /* Hide announcement in landscape to save space */
+        }
+        
+        .hero-waves {
+            height: 40px;
+        }
+    }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to adjust hero section padding based on header height
+    function adjustHeroPadding() {
+        const header = document.querySelector('.navbar');
+        const hero = document.querySelector('.hero-section');
+        
+        if (header && hero) {
+            const headerHeight = header.offsetHeight;
+            const isSmallScreen = window.innerWidth <= 768;
+            
+            // Add extra buffer on small screens to prevent overlap
+            const paddingValue = isSmallScreen ? headerHeight + 30 : headerHeight + 10;
+            hero.style.paddingTop = paddingValue + 'px';
+            
+            // Force a reflow to ensure the change takes effect
+            hero.offsetHeight;
+        }
+    }
+    
+    // Adjust immediately
+    adjustHeroPadding();
+    
+    // Adjust on load
+    window.addEventListener('load', adjustHeroPadding);
+    
+    // Adjust on resize
+    window.addEventListener('resize', adjustHeroPadding);
+    
+    // Multiple adjustments for small screens
+    if (window.innerWidth <= 768) {
+        setTimeout(adjustHeroPadding, 100);
+        setTimeout(adjustHeroPadding, 300);
+        setTimeout(adjustHeroPadding, 500);
+        setTimeout(adjustHeroPadding, 1000);
+        setTimeout(adjustHeroPadding, 2000);
+    }
+    
+    // Force adjustment on scroll (in case header changes)
+    window.addEventListener('scroll', function() {
+        if (window.innerWidth <= 768) {
+            adjustHeroPadding();
+        }
+    });
+});
+</script>
 
 <!-- Professional Hero Section -->
 <section id="hero" class="hero-section" >

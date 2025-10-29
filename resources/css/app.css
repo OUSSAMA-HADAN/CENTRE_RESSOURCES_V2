@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'animate.css/animate.min.css';
+@import 'summernote/dist/summernote-bs4.min.css';
 @import 'swiper/css/bundle';
 @import './fonts.css';
 

@@ -8,14 +8,28 @@
 
     <title>{{ config('app.name') }} | @yield('title', 'Administration')</title>
     
-    <!-- CDN CSS (only for external libraries) -->
+    <!-- FontAwesome CDN (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <!-- Local CSS (includes Bootstrap) -->
-    @vite(['resources/css/app.css'])
+    <!-- Local CSS (includes Bootstrap, Animate.css, Summernote, Swiper) -->
+    @if(app()->environment('local') && file_exists(base_path('public/hot')))
+        {{-- Development: Use Vite dev server --}}
+        @vite(['resources/css/app.css'])
+    @else
+        {{-- Production: Use compiled assets --}}
+        @php
+            $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? null;
+        @endphp
+        @if($cssFile)
+            <link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}">
+        @else
+            <style>
+                /* Fallback styles */
+                body { font-family: system-ui, -apple-system, sans-serif; }
+            </style>
+        @endif
+    @endif
     <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
 
     <style>
@@ -417,6 +431,32 @@
             z-index: 1080 !important;
         }
 
+        /* Ensure dropdown is visible */
+        .header-actions .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 1000;
+            min-width: 10rem;
+            padding: 0.5rem 0;
+            margin: 0.125rem 0 0;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 0.375rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+        }
+
+        .header-actions .dropdown.show .dropdown-menu {
+            display: block;
+        }
+
+        /* Debug: Make dropdown always visible for testing - REMOVE THIS AFTER TESTING */
+        /* .header-actions .dropdown-menu {
+            display: block !important;
+            opacity: 0.8;
+        } */
+
         /* Alert styles */
         .alert {
             border: none;
@@ -611,12 +651,28 @@
     </main>
     </div> <!-- End admin-layout -->
 
-    <!-- CDN JS (only for external libraries) -->
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- Local JS (includes Bootstrap, jQuery, Popper.js) -->
-    @vite(['resources/js/app.js'])
+    <!-- Local JS (includes Bootstrap, jQuery, Popper.js, Summernote, Swiper) -->
+    @if(app()->environment('local') && file_exists(base_path('public/hot')))
+        {{-- Development: Use Vite dev server --}}
+        @vite(['resources/js/app.js'])
+    @else
+        {{-- Production: Use compiled assets --}}
+        @php
+            $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+            $jsFile = $manifest['resources/js/app.js']['file'] ?? null;
+            $vendorFile = $manifest['resources/js/app.js']['imports'][0] ?? null;
+            $swiperFile = $manifest['resources/js/app.js']['imports'][1] ?? null;
+        @endphp
+        @if($jsFile)
+            @if($vendorFile && isset($manifest[$vendorFile]))
+                <script src="{{ asset('build/' . $manifest[$vendorFile]['file']) }}"></script>
+            @endif
+            @if($swiperFile && isset($manifest[$swiperFile]))
+                <script src="{{ asset('build/' . $manifest[$swiperFile]['file']) }}"></script>
+            @endif
+            <script src="{{ asset('build/' . $jsFile) }}"></script>
+        @endif
+    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -739,6 +795,49 @@
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             });
+
+            // Initialize Bootstrap dropdowns with more robust method
+            setTimeout(function() {
+                var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+                var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+                    return new bootstrap.Dropdown(dropdownToggleEl)
+                });
+                
+                // Also try manual initialization for the specific dropdown
+                var userMenuDropdown = document.getElementById('userMenu');
+                if (userMenuDropdown) {
+                    new bootstrap.Dropdown(userMenuDropdown);
+                }
+            }, 100);
+
+            // Manual click handler for dropdown as backup
+            var userMenuButton = document.getElementById('userMenu');
+            var userMenuDropdown = document.querySelector('#userMenu + .dropdown-menu');
+            
+            if (userMenuButton && userMenuDropdown) {
+                userMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle dropdown manually
+                    var isOpen = userMenuDropdown.style.display === 'block';
+                    if (isOpen) {
+                        userMenuDropdown.style.display = 'none';
+                        userMenuButton.setAttribute('aria-expanded', 'false');
+                    } else {
+                        userMenuDropdown.style.display = 'block';
+                        userMenuButton.setAttribute('aria-expanded', 'true');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+                        userMenuDropdown.style.display = 'none';
+                        userMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
         });
     </script>
 

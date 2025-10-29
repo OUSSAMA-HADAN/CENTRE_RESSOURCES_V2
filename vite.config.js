@@ -6,6 +6,8 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
+            // Force absolute URLs for production
+            buildDirectory: 'build',
         }),
     ],
     resolve: {
@@ -57,6 +59,7 @@ export default defineConfig({
             },
         },
     },
+    assetsInclude: ['**/*.woff2', '**/*.woff', '**/*.ttf', '**/*.eot'],
     css: {
         devSourcemap: true,
     },
