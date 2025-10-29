@@ -18,7 +18,6 @@ return [
     
     'units' => [
         'title' => 'وحداتنا',
-        'research' => 'البحث والتطوير',
         'documentation' => 'التوثيق والإنتاج',
         'online_training' => 'التدريب عبر الإنترنت',
     ],

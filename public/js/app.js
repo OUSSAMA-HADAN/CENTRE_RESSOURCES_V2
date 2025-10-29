@@ -1,12 +1,10 @@
 import './bootstrap';
 import * as bootstrap from 'bootstrap';
-import $ from 'jquery';
 import { Swiper } from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-// Make Bootstrap, jQuery, and Swiper available globally
+// Make Bootstrap and Swiper available globally
 window.bootstrap = bootstrap;
-window.$ = window.jQuery = $;
 window.Swiper = Swiper;
 
 // Initialize all components when DOM is loaded

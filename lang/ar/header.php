@@ -7,7 +7,6 @@ return [
     'home' => 'الرئيسية',
     'about' => 'من نحن',
     'units' => 'الوحدات',
-    'research_development' => 'وحدة البحث والتطوير',
     'documentation_production' => 'وحدة التوثيق والإنتاج',
     'online_training' => 'التدريب عبر الإنترنت',
     'gallery' => 'معرض الصور',
@@ -25,7 +24,6 @@ return [
 
     // Dropdown Sections
     'units_dropdown' => [
-        'research' => 'وحدة البحث والتطوير',
         'documentation' => 'وحدة التوثيق والإنتاج',
         'online_training' => 'التدريب عبر الإنترنت',
     ],
@@ -33,4 +31,5 @@ return [
     // Accessibility and Mobile Menu
     'toggle_navigation' => 'تبديل التنقل',
     'close_menu' => 'إغلاق القائمة',
+    'change_language' => 'تغيير اللغة',
 ];

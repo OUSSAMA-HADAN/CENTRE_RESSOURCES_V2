@@ -9,17 +9,15 @@
             <span class="ms-2 d-none d-sm-inline text-light site-title">{{ __('header.title') }}</span>
         </a>
 
-        <!-- Language switcher for mobile (visible outside sidebar) -->
-        <div class="d-lg-none me-2">
-            <div class="dropdown">
-                <button class="btn btn-sm text-white dropdown-toggle language-btn" type="button" id="mobileLangDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-globe me-1"></i>
-                    <span>{{ app()->getLocale() == 'fr' ? 'FR' : 'AR' }}</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end animated fadeIn" aria-labelledby="mobileLangDropdown">
-                    <li><a class="dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
-                    <li><a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
-                </ul>
+        <!-- Modern Language Toggle for Mobile -->
+        <div class="d-lg-none me-3">
+            <div class="language-switcher-mobile">
+                <a href="{{ route('language.switch', app()->getLocale() == 'fr' ? 'ar' : 'fr') }}" 
+                   class="language-btn-mobile-icon-only">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="language-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path>
+                    </svg>
+                </a>
             </div>
         </div>
 
@@ -70,11 +68,6 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('recherche.index') }}">
-                                <i class="fas fa-microscope me-2"></i>{{ __('header.research_development') }}
-                            </a>
-                        </li>
-                        <li>
                             <a class="dropdown-item" href="{{ route('documentation.index') }}">
                                 <i class="fas fa-book me-2"></i>{{ __('header.documentation_production') }}
                             </a>
@@ -100,22 +93,25 @@
                     </a>
                     <span class="nav-indicator"></span>
                 </li>
-               <!-- Language switcher - FIXED -->
-<li class="nav-item dropdown position-relative mx-lg-1 d-none d-lg-block">
-    <a class="nav-link dropdown-toggle text-light px-3 py-2" href="#" 
-       id="languageDropdown"
-       role="button" 
-       data-bs-toggle="dropdown" 
-       aria-expanded="false">
-        <i class="fas fa-globe me-1"></i>
-        <span>{{ app()->getLocale() == 'fr' ? 'FR' : 'AR' }}</span>
-    </a>
-    <span class="nav-indicator"></span>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-        <li><a class="dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
-        <li><a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
-    </ul>
-</li>
+                <!-- Modern Language Switcher for Desktop - Icon Only -->
+                <li class="nav-item position-relative mx-lg-1 d-none d-lg-block">
+                    <div class="language-switcher-desktop">
+                        <a href="{{ route('language.switch', app()->getLocale() == 'fr' ? 'ar' : 'fr') }}" 
+                           class="language-btn-desktop-icon-only">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="language-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <span class="nav-indicator"></span>
+                </li>
+                <!-- S'inscrire Button for Desktop -->
+                <li class="nav-item position-relative mx-lg-1 d-none d-lg-block">
+                    <a class="btn signup-btn px-4 py-2" href="{{ route('inscription.form') }}" 
+                       style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease; color: #fff; border: none;">
+                        <i class="fas fa-user-plus me-2"></i>{{ __('header.register') }}
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -149,14 +145,11 @@
                     <i class="fas fa-chevron-down ms-auto dropdown-icon"></i>
                 </div>
                 <ul class="mobile-dropdown-menu">
-                    <li><a class="mobile-dropdown-item" href="{{route('recherche.index')}}">
-                            <i class="fas fa-microscope me-2"></i> {{ __('header.units_dropdown.research') }}
-                        </a></li>
                     <li><a class="mobile-dropdown-item" href="{{route('documentation.index')}}">
                             <i class="fas fa-book me-2"></i>{{ __('header.units_dropdown.documentation') }}
                         </a></li>
                     <li><a class="mobile-dropdown-item"  href="{{route('formation.index')}}">
-                            <i class="fas fa-users me-2"></i>Formation Enligne
+                            <i class="fas fa-users me-2"></i>{{ __('header.online_training') }}
                         </a></li>
                 </ul>
             </li>
@@ -173,21 +166,18 @@
                 </a>
             </li>
             <!-- Mobile Language Switcher -->
-            <li class="mobile-nav-item mobile-dropdown">
-                <div class="mobile-nav-link mobile-dropdown-toggle">
-                    <i class="fas fa-globe me-2"></i>
-                    <span>{{ app()->getLocale() == 'fr' ? 'Français' : 'العربية' }}</span>
-                    <i class="fas fa-chevron-down ms-auto dropdown-icon"></i>
-                </div>
-                <ul class="mobile-dropdown-menu">
-                    <li><a class="mobile-dropdown-item {{ app()->getLocale() == 'fr' ? 'active' : '' }}" href="{{ route('language.switch', 'fr') }}">Français</a></li>
-                    <li><a class="mobile-dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}" href="{{ route('language.switch', 'ar') }}">العربية</a></li>
-                </ul>
+            <li class="mobile-nav-item">
+                <a class="mobile-nav-link" href="{{ route('language.switch', app()->getLocale() == 'fr' ? 'ar' : 'fr') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="me-2" style="width: 18px; height: 18px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"></path>
+                    </svg>
+                    <span>{{ __('header.change_language') }}</span>
+                </a>
             </li>
             <li class="mobile-nav-item mt-4">
                 <a class="btn px-4 py-2 signup-btn w-100" href="{{route('inscription.form')}}" 
                     style="background-color: #f7a223; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; transition: all 0.3s ease;">
-                    <i class="fas fa-user-plus me-2"></i>S'inscrire
+                    <i class="fas fa-user-plus me-2"></i>{{ __('header.register') }}
                 </a>
             </li>
         </ul>
@@ -207,19 +197,167 @@
         z-index: 1030;
     }
 
-    /* Mobile language button */
-    .language-btn {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        font-size: 0.85rem;
-        padding: 0.25rem 0.5rem;
-        transition: all 0.2s ease;
+    /* Modern Language Switcher Styles */
+    .language-switcher-desktop,
+    .language-switcher-mobile {
+        position: relative;
+        display: inline-block;
     }
 
-    .language-btn:hover, .language-btn:focus {
-        background-color: rgba(255, 255, 255, 0.2);
+    .language-btn-desktop,
+    .language-btn-mobile {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
         color: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+
+    /* Icon-only language button */
+    .language-btn-desktop-icon-only {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 0.5rem;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Icon-only language button for mobile */
+    .language-btn-mobile-icon-only {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        padding: 0.4rem;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+    }
+
+    .language-btn-mobile {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        border-radius: 10px;
+    }
+
+    .language-btn-desktop:hover,
+    .language-btn-mobile:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+
+    .language-btn-desktop-icon-only:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+
+    .language-btn-mobile-icon-only:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+
+    .language-icon {
+        width: 20px;
+        height: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .language-btn-mobile .language-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .language-btn-mobile-icon-only .language-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .language-btn-desktop:hover .language-icon,
+    .language-btn-mobile:hover .language-icon {
+        transform: rotate(15deg) scale(1.1);
+    }
+
+    .language-text {
+        font-weight: 600;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .language-indicator {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .language-badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-nav-link:hover .language-badge {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+        0%, 100% { 
+            opacity: 0.8; 
+            transform: translateY(-50%) scale(1); 
+        }
+        50% { 
+            opacity: 1; 
+            transform: translateY(-50%) scale(1.2); 
+        }
     }
 
     /* Logo effects */
@@ -564,6 +702,16 @@
             font-size: 0.85rem;
             padding: 0.5rem 1rem;
         }
+
+        .language-btn-mobile {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+        }
+
+        .language-btn-mobile .language-icon {
+            width: 14px;
+            height: 14px;
+        }
     }
 
     @media (max-width: 767.98px) {
@@ -592,6 +740,16 @@
             font-size: 0.9rem;
             padding: 0.5rem 1rem;
         }
+
+        .language-btn-mobile {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .language-btn-mobile .language-icon {
+            width: 12px;
+            height: 12px;
+        }
     }
 
     @media (max-width: 575.98px) {
@@ -607,6 +765,16 @@
         .signup-btn {
             font-size: 0.8rem;
             padding: 0.6rem 1rem;
+        }
+
+        .language-btn-mobile {
+            padding: 0.2rem 0.4rem;
+            font-size: 0.7rem;
+        }
+
+        .language-btn-mobile .language-icon {
+            width: 10px;
+            height: 10px;
         }
     }
 
@@ -624,6 +792,16 @@
         .mobile-dropdown-item {
             font-size: 0.85rem;
             padding: 0.4rem 0.75rem;
+        }
+
+        .language-btn-mobile {
+            padding: 0.15rem 0.3rem;
+            font-size: 0.65rem;
+        }
+
+        .language-btn-mobile .language-icon {
+            width: 8px;
+            height: 8px;
         }
     }
 

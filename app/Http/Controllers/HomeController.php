@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recherche;
-use App\Models\Documentation;
+use App\Models\Resource;
 use App\Models\Formation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -16,10 +16,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $recherches = Recherche::where('status', 'published')->latest()->limit(3)->get();
-        // $documentations = Documentation::where('status', 'published')->latest()->limit(3)->get();
-        // $formations = Formation::where('status', 'published')->latest()->limit(3)->get();
+        // Get the count of published documentation resources with caching
+        $documentationCount = Cache::remember('documentation_count', 3600, function () {
+            return Resource::published()->count();
+        });
 
-        return view('pages.index');
+        return view('pages.index', compact('documentationCount'));
     }
 }

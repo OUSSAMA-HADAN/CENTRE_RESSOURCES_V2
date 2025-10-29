@@ -7,11 +7,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name') }} | @yield('title', 'Administration')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
+    
+    <!-- CDN CSS (only for external libraries) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Local CSS (includes Bootstrap) -->
+    @vite(['resources/css/app.css'])
+    <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
 
     <style>
         :root {
@@ -21,16 +26,30 @@
             --primary-color: #4361ee;
             --dark-bg: #2b3137;
             --text-color: #333;
-            --light-bg: #f8f9fa;
+            --light-bg: #f5f7fb;
             --transition-speed: 0.3s;
         }
 
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fb;
+            box-sizing: border-box;
+        }
+
+        html, body {
             overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main layout container */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
         }
 
         /* Header */
@@ -45,19 +64,22 @@
             display: flex;
             align-items: center;
             padding: 0 20px;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid #e3e6f0;
         }
 
         .header-title {
             font-size: 1.25rem;
             font-weight: 500;
             margin-left: 15px;
+            color: var(--text-color);
         }
 
         .header-actions {
             margin-left: auto;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
         /* Sidebar toggle buttons */
@@ -71,42 +93,72 @@
             color: var(--text-color);
         }
 
+        .sidebar-toggle-desktop-header {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            padding: 8px;
+            color: var(--text-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle-desktop-header:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
+        }
+
         .sidebar-toggle-desktop {
             background: none;
             border: none;
             color: white;
             font-size: 1.2rem;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
             display: none;
-            /* Hidden by default */
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            min-width: 32px;
+            min-height: 32px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-toggle-desktop:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .sidebar-toggle-desktop:active {
+            transform: scale(0.95);
         }
 
         @media (min-width: 992px) {
             .sidebar-toggle-desktop {
+                display: flex;
+            }
+
+            .sidebar-toggle-desktop-header {
                 display: block;
-                /* Show on desktop */
             }
 
             .sidebar-toggle-mobile {
                 display: none;
-                /* Hide on desktop */
             }
         }
 
         /* Sidebar */
         .admin-sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            /* Start offscreen */
             width: var(--sidebar-width);
-            height: 100vh;
+            min-height: 100vh;
             background-color: var(--dark-bg);
             color: white;
-            z-index: 200;
             overflow-y: auto;
-            transition: left var(--transition-speed) ease, width var(--transition-speed) ease;
+            transition: width var(--transition-speed) ease;
+            flex-shrink: 0;
+            position: relative;
         }
 
         /* Sidebar visible state */
@@ -117,8 +169,6 @@
         /* Sidebar on desktop */
         @media (min-width: 992px) {
             .admin-sidebar {
-                left: 0;
-                /* Always show on desktop */
                 width: var(--sidebar-width);
             }
 
@@ -128,13 +178,8 @@
             }
 
             .admin-main {
-                margin-left: var(--sidebar-width);
-                transition: margin-left var(--transition-speed) ease;
-            }
-
-            /* Main content when sidebar is collapsed */
-            .admin-sidebar.collapsed~.admin-main {
-                margin-left: var(--sidebar-collapsed-width);
+                flex: 1;
+                transition: all var(--transition-speed) ease;
             }
         }
 
@@ -179,6 +224,7 @@
             padding: 0 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             justify-content: space-between;
+            position: relative;
         }
 
         .sidebar-title {
@@ -203,6 +249,7 @@
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: background-color 0.2s;
+            border: none;
         }
 
         .sidebar-menu li a:hover,
@@ -219,7 +266,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 150;
+            z-index: 1040;
             display: none;
         }
 
@@ -227,15 +274,67 @@
             display: block;
         }
 
+        /* Mobile sidebar behavior */
+        @media (max-width: 991.98px) {
+            .admin-layout {
+                position: relative;
+            }
+            
+            .admin-sidebar {
+                position: fixed;
+                left: -250px;
+                width: var(--sidebar-width);
+                height: 100vh;
+                z-index: 1050;
+                transition: left var(--transition-speed) ease;
+            }
+            
+            .admin-sidebar.active {
+                left: 0;
+            }
+            
+            .admin-main {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
         /* Main content */
         .admin-main {
-            padding-top: var(--header-height);
+            flex: 1;
             min-height: 100vh;
-            transition: margin-left var(--transition-speed) ease;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: var(--header-height);
         }
 
         .admin-content {
             padding: 20px;
+            max-width: 100%;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        /* Ensure content doesn't overflow */
+        .admin-content .container,
+        .admin-content .container-fluid {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Fix for tables and wide content */
+        .admin-content table {
+            max-width: 100%;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+
+        .admin-content .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Close button for mobile */
@@ -254,50 +353,7 @@
         @media (min-width: 992px) {
             .sidebar-close {
                 display: none;
-                /* Hide on desktop */
             }
-        }
-
-        /* Section headers */
-        .section-title {
-            border-bottom: 1px solid #e3e6f0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            color: var(--dark-bg);
-        }
-
-        /* Card styles */
-        .card {
-            border: none;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
-            margin-bottom: 1.5rem;
-        }
-
-        .card-header {
-            background-color: white;
-            border-bottom: 1px solid #e3e6f0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.25rem;
-        }
-
-        /* Buttons */
-        .btn-circle {
-            border-radius: 100%;
-            height: 2.5rem;
-            width: 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-circle.btn-sm {
-            height: 1.8rem;
-            width: 1.8rem;
-            font-size: 0.75rem;
         }
 
         /* Sidebar section headers */
@@ -323,6 +379,114 @@
         .admin-sidebar.collapsed .sidebar-footer {
             display: none;
         }
+
+        /* Fix for Bootstrap compatibility */
+        .admin-content .card {
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-content .card-header {
+            background-color: white;
+            border-bottom: 1px solid #e3e6f0;
+            padding: 1rem 1.25rem;
+        }
+
+        .admin-content .table {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .admin-content .btn {
+            font-weight: 500;
+        }
+
+        /* Ensure proper z-index for modals */
+        .modal {
+            z-index: 1060 !important;
+        }
+
+        .modal-backdrop {
+            z-index: 1050 !important;
+        }
+
+        /* Fix for dropdowns */
+        .dropdown-menu {
+            z-index: 1080 !important;
+        }
+
+        /* Alert styles */
+        .alert {
+            border: none;
+            border-radius: 0.5rem;
+        }
+
+        /* Additional responsive fixes */
+        @media (max-width: 1200px) {
+            .admin-content {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-content {
+                padding: 10px;
+            }
+        }
+
+        /* Ensure proper scrolling on mobile */
+        @media (max-width: 991.98px) {
+            .admin-main {
+                overflow-x: hidden;
+            }
+            
+            .admin-content {
+                overflow-x: hidden;
+            }
+        }
+
+        /* Fix for very wide content */
+        .admin-content * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Ensure proper flexbox behavior */
+        .admin-layout {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* Desktop specific fixes */
+        @media (min-width: 992px) {
+            .admin-layout {
+                display: flex;
+                flex-direction: row;
+            }
+            
+            .admin-sidebar {
+                flex-shrink: 0;
+            }
+            
+            .admin-main {
+                flex: 1;
+                min-width: 0; /* Prevents flex item from overflowing */
+            }
+        }
+
+        /* Mobile specific fixes */
+        @media (max-width: 991.98px) {
+            .admin-layout {
+                display: block;
+            }
+            
+            .admin-sidebar {
+                position: fixed;
+                z-index: 1050;
+            }
+        }
     </style>
 
     @yield('styles')
@@ -334,38 +498,17 @@
         <button class="sidebar-toggle-mobile" id="sidebarToggleMobile">
             <i class="fas fa-bars"></i>
         </button>
-        {{-- <h1 class="header-title">@yield('page-title', 'Tableau de Bord')</h1> --}}
+        
+        <button class="sidebar-toggle-desktop-header" id="sidebarToggleDesktopHeader">
+            <i class="fas fa-bars"></i>
+        </button>
 
         <div class="header-actions">
-            {{-- <div class="dropdown me-3">
-                <button class="btn" type="button" id="notificationsMenu" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsMenu">
-                    <li>
-                        <h6 class="dropdown-header">Notifications</h6>
-                    </li>
-                    <li><a class="dropdown-item" href="#">Nouveau candidat</a></li>
-                    <li><a class="dropdown-item" href="#">Message reçu</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">Voir toutes les notifications</a></li>
-                </ul>
-            </div> --}}
-
             <div class="dropdown">
-                <button class="btn dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user me-1"></i> Admin
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                    {{-- <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i> Profil</a></li> --}}
-                    {{-- <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Paramètres</a></li> --}}
-                    {{-- <li>
-                        <hr class="dropdown-divider">
-                    </li> --}}
                     <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="dropdown-item">
@@ -380,8 +523,10 @@
     <!-- Sidebar Overlay -->
     <div class="overlay" id="overlay"></div>
 
-    <!-- Sidebar -->
-    <aside class="admin-sidebar" id="sidebar">
+    <!-- Main Layout Container -->
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="sidebar">
         <button class="sidebar-close" id="sidebarClose">
             <i class="fas fa-times"></i>
         </button>
@@ -412,36 +557,7 @@
                     <span class="sidebar-text">Candidats</span>
                 </a>
             </li>
-          
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <li class="{{ request()->routeIs('admin.recherche.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.recherche.index') }}">
-                    <i class="fas fa-microscope me-2"></i>
-                    <span class="sidebar-text">Recherches</span>
-                </a>
-            </li>
 
             <li class="{{ request()->routeIs('admin.documentation.index') ? 'active' : '' }}">
                 <a href="{{ route('admin.documentation.index') }}">
@@ -449,19 +565,15 @@
                     <span class="sidebar-text">Documentation</span>
                 </a>
             </li>
+            
             <li class="{{ request()->routeIs('admin.formations.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.formations.index') }}">
                     <i class="fas fa-graduation-cap nav-icon"></i>
                     <span class="sidebar-text">Formations en ligne</span>
                 </a>
             </li>
+            
             <li class="sidebar-section-header">Système</li>
-            <!--<li class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">-->
-            <!--    <a href="">-->
-            <!--        <i class="fas fa-cog nav-icon"></i>-->
-            <!--        <span class="sidebar-text">Paramètres</span>-->
-            <!--    </a>-->
-            <!--</li>-->
             <li>
                 <a href="{{ route('home') }}">
                     <i class="fas fa-home nav-icon"></i>
@@ -472,7 +584,7 @@
 
         <div class="sidebar-footer">
             <div class="d-flex justify-content-center">
-                <small class="text-muted">© {{ date('Y') }} Votre Entreprise</small>
+                <small class="text-muted">© {{ date('Y') }} Centre de Ressources</small>
             </div>
         </div>
     </aside>
@@ -497,9 +609,14 @@
             @yield('content')
         </div>
     </main>
+    </div> <!-- End admin-layout -->
 
-    <!-- Scripts -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> --}}
+    <!-- CDN JS (only for external libraries) -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Local JS (includes Bootstrap, jQuery, Popper.js) -->
+    @vite(['resources/js/app.js'])
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -508,6 +625,7 @@
             const overlay = document.getElementById('overlay');
             const sidebarToggleMobile = document.getElementById('sidebarToggleMobile');
             const sidebarToggleDesktop = document.getElementById('sidebarToggleDesktop');
+            const sidebarToggleDesktopHeader = document.getElementById('sidebarToggleDesktopHeader');
             const toggleIcon = document.getElementById('toggleIcon');
             const sidebarClose = document.getElementById('sidebarClose');
 
@@ -524,7 +642,26 @@
             }
 
             // Toggle sidebar on desktop
-            sidebarToggleDesktop?.addEventListener('click', function() {
+            sidebarToggleDesktop?.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Desktop toggle clicked');
+                sidebar.classList.toggle('collapsed');
+
+                if (sidebar.classList.contains('collapsed')) {
+                    toggleIcon.classList.remove('fa-chevron-left');
+                    toggleIcon.classList.add('fa-chevron-right');
+                    localStorage.setItem('sidebarCollapsed', 'true');
+                } else {
+                    toggleIcon.classList.remove('fa-chevron-right');
+                    toggleIcon.classList.add('fa-chevron-left');
+                    localStorage.setItem('sidebarCollapsed', 'false');
+                }
+            });
+
+            // Toggle sidebar from header (desktop)
+            sidebarToggleDesktopHeader?.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Header toggle clicked');
                 sidebar.classList.toggle('collapsed');
 
                 if (sidebar.classList.contains('collapsed')) {
@@ -542,14 +679,14 @@
             sidebarToggleMobile?.addEventListener('click', function() {
                 sidebar.classList.add('active');
                 overlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden';
             });
 
             // Close sidebar
             function closeSidebar() {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
-                document.body.style.overflow = ''; // Re-enable scrolling
+                document.body.style.overflow = '';
             }
 
             sidebarClose?.addEventListener('click', closeSidebar);
@@ -557,10 +694,9 @@
 
             // Close sidebar when clicking on a menu item on mobile
             const menuItems = document.querySelectorAll('.sidebar-menu a');
-
             menuItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    if (window.innerWidth < 992) { // Only on mobile
+                    if (window.innerWidth < 992) {
                         closeSidebar();
                     }
                 });
@@ -569,7 +705,7 @@
             // Handle window resize
             window.addEventListener('resize', function() {
                 if (window.innerWidth >= 992) {
-                    document.body.style.overflow = ''; // Always enable scrolling on desktop
+                    document.body.style.overflow = '';
                     overlay.classList.remove('active');
                     sidebar.classList.remove('active');
 
@@ -597,10 +733,15 @@
                     }
                 }
             });
+
+            // Initialize Bootstrap tooltips if needed
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
         });
     </script>
 
     @yield('scripts')
 </body>
-
 </html>

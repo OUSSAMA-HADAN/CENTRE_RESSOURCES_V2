@@ -2,14 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\EducatriceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducatriceAdminController;
-use App\Http\Controllers\Admin\AdminRechercheController;
 use App\Http\Controllers\Admin\AdminDocumentationController;
 use App\Http\Controllers\Admin\AdminFormationController;
 
@@ -24,8 +22,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Language Switcher
 Route::get('/language/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'fr', 'ar'])) {
+    if (in_array($locale, ['fr', 'ar'])) {
         session(['locale' => $locale]);
+        app()->setLocale($locale);
     }
     return redirect()->back();
 })->name('language.switch');
@@ -38,18 +37,12 @@ Route::prefix('inscription')->name('inscription.')->group(function () {
     Route::post('/educatrice', [EducatriceController::class, 'store'])->name('educatrice.store');
 });
 
-// Recherche Routes (Public)
-Route::prefix('recherche')->name('recherche.')->group(function () {
-    Route::get('/', [RechercheController::class, 'index'])->name('index');
-    Route::get('/{recherche}', [RechercheController::class, 'show'])->name('show');
-});
 
 // Documentation Routes (Public)
 Route::prefix('documentation')->name('documentation.')->group(function () {
     Route::get('/', [DocumentationController::class, 'index'])->name('index');
-    Route::get('/publication/{document}', [DocumentationController::class, 'show'])->name('show');
-    Route::get('/ressource/{ressource}', [DocumentationController::class, 'showResource'])->name('resource');
-    Route::get('/ressource/{ressource}/download', [DocumentationController::class, 'downloadResource'])->name('resource.download');
+    Route::get('/ressource/{slug}', [DocumentationController::class, 'showResource'])->name('resource');
+    Route::get('/ressource/{slug}/download', [DocumentationController::class, 'downloadResource'])->name('resource.download');
 });
 
 // Formation Routes (Public)
@@ -100,26 +93,12 @@ Route::prefix('educatrices')->name('educatrices.')->group(function () {
 Route::prefix('candidats')->name('candidats.')->group(function () {
     Route::get('/', [EducatriceAdminController::class, 'index'])->name('index');
     Route::get('/export-excel', [EducatriceAdminController::class, 'exportExcel'])->name('export-excel');
-    Route::get('/export', [EducatriceAdminController::class, 'exportExcel'])->name('export'); // ADD THIS LINE
     Route::post('/bulk-action', [EducatriceAdminController::class, 'bulkAction'])->name('bulk-action');
     Route::get('/{educatrice}', [EducatriceAdminController::class, 'show'])->name('show');
     Route::get('/{educatrice}/edit', [EducatriceAdminController::class, 'edit'])->name('edit');
     Route::put('/{educatrice}', [EducatriceAdminController::class, 'update'])->name('update');
     Route::delete('/{educatrice}', [EducatriceAdminController::class, 'destroy'])->name('destroy');
 });
-    /*
-    |--------------------------------------------------------------------------
-    | Recherche Management
-    |--------------------------------------------------------------------------
-    */
-    Route::prefix('recherche')->name('recherche.')->group(function () {
-        Route::get('/', [AdminRechercheController::class, 'index'])->name('index');
-        Route::get('/create', [AdminRechercheController::class, 'create'])->name('create');
-        Route::post('/', [AdminRechercheController::class, 'store'])->name('store');
-        Route::get('/{recherche}/edit', [AdminRechercheController::class, 'edit'])->name('edit');
-        Route::put('/{recherche}', [AdminRechercheController::class, 'update'])->name('update');
-        Route::delete('/{recherche}', [AdminRechercheController::class, 'destroy'])->name('destroy');
-    });
 
     /*
     |--------------------------------------------------------------------------
@@ -130,14 +109,6 @@ Route::prefix('candidats')->name('candidats.')->group(function () {
         // Main index
         Route::get('/', [AdminDocumentationController::class, 'index'])->name('index');
 
-        // Publications Management
-        Route::prefix('publications')->name('publications.')->group(function () {
-            Route::get('/create', [AdminDocumentationController::class, 'createPublication'])->name('create');
-            Route::post('/', [AdminDocumentationController::class, 'storePublication'])->name('store');
-            Route::get('/{publication}/edit', [AdminDocumentationController::class, 'editPublication'])->name('edit');
-            Route::put('/{publication}', [AdminDocumentationController::class, 'updatePublication'])->name('update');
-            Route::delete('/{publication}', [AdminDocumentationController::class, 'destroyPublication'])->name('destroy');
-        });
 
         // Resources Management
         Route::prefix('resources')->name('resources.')->group(function () {

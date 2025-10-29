@@ -5,9 +5,7 @@ return [
     'hero' => [
         'badge' => 'Centre de Ressources du Préscolaire',
         'title' => 'Unité de Documentation et Production',
-        'subtitle' => 'Création et diffusion de ressources pédagogiques innovantes pour l\'éducation préscolaire',
-        'button_categories' => 'Découvrir nos Catégories',
-        'button_publications' => 'Voir nos publications'
+        'subtitle' => 'diffusion de ressources pédagogiques innovantes pour l\'éducation préscolaire'
     ],
     
     'categories' => [
@@ -42,18 +40,6 @@ return [
             'description' => 'Étude sur les méthodes innovantes d\'apprentissage.',
             'date' => '10 Janvier 2024',
             'category' => 'Articles de Recherche'
-        ]
-    ],
-    
-    'featured_publications' => [
-        'title' => 'Publications Phares',
-        'publications' => [
-            
-                'title' => 'Publication Phare 1',
-                'description' => "Un article innovant sur les méthodes de enseignement préscolaire.",
-                'date' => '20 Février 2024'
-            
-            
         ]
     ]
 ];

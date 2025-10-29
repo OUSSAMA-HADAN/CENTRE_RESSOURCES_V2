@@ -2,13 +2,32 @@
 
 return [
     // Entête héroïque
+    'badge' => 'Formations',
     'title' => 'Unité des Ateliers en ligne',
     'description' => 'Développement professionnel et formation continue pour les éducateurs du préscolaire',
     'view_all_button' => 'Découvrir nos programmes',
     'register_button' => 'S\'inscrire',
     
+    // Formations programmées
+    'programmed' => [
+        'badge' => 'Nos Programmes',
+        'title' => 'Ateliers en ligne programmés',
+        'description' => 'Développez vos compétences professionnelles grâce à nos formations spécialisées',
+    ],
+    
+    // Card translations
+    'card' => [
+        'online' => 'En ligne',
+        'no_date' => 'Date non définie',
+        'no_duration' => 'Non spécifiée',
+        'no_trainer' => 'Non spécifié',
+        'no_platform' => 'Non spécifiée',
+        'details_button' => 'Détails de la formation',
+    ],
+    
     // Section approche
     'approach' => [
+        'badge' => 'Notre Approche',
         'title' => 'Notre approche de formation',
         'description' => 'L\'Unité des Ateliers en ligne du Centre de Ressources du Préscolaire d\'Oujda offre des programmes de développement professionnel innovants et accessibles pour les éducateurs. Nos Ateliers combinent théorie, pratique et accompagnement personnalisé pour répondre aux besoins spécifiques du secteur préscolaire au Maroc.',
         'flexibility' => [
@@ -48,6 +67,7 @@ return [
     
     // Pourquoi choisir nos formations
     'why_choose' => [
+        'badge' => 'Nos Avantages',
         'title' => 'Pourquoi choisir nos formations',
         'description' => 'Des formations de qualité adaptées aux besoins des éducateurs du préscolaire',
         'expertise' => [

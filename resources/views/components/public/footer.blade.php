@@ -44,11 +44,9 @@
                 <h5 class="text-white mb-3">{{ __('footer.units.title') }}</h5>
                 <div style="width: 40px; height: 3px; background-color: #ffc107;" class="mb-3"></div>
                 <ul class="list-unstyled footer-links">
-                    <li class="mb-2"><a href="#formations" class="text-white-50 text-decoration-none"><i
-                                class="fas fa-microscope me-2"></i>{{ __('footer.units.research') }}</a></li>
-                    <li class="mb-2"><a href="#consultations" class="text-white-50 text-decoration-none"><i
+                    <li class="mb-2"><a href="{{ route('documentation.index') }}" class="text-white-50 text-decoration-none"><i
                                 class="fas fa-book me-2"></i>{{ __('footer.units.documentation') }}</a></li>
-                    <li><a href="#ateliers" class="text-white-50 text-decoration-none"><i
+                    <li><a href="{{ route('formation.index') }}" class="text-white-50 text-decoration-none"><i
                                 class="fas fa-users me-2"></i>Atelier en ligne</a></li>
                 </ul>
             </div>

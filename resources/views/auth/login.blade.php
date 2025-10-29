@@ -6,9 +6,7 @@
     <meta name="description" content="Centre de Ressources du Préscolaire - Administration">
     <title>Centre de Ressources du Préscolaire - Admin</title>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- Local CSS will be loaded via Vite -->
     
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">

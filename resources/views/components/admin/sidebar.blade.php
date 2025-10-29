@@ -311,15 +311,6 @@
 
 
             
-            <li class="{{ Route::is('admin.recherche.*') ? 'active' : '' }}">
-                <a href="{{ route('admin.recherche.index') }}">
-                    <i class="fas fa-microscope nav-icon"></i>
-                    <span class="nav-text">Recherches</span>
-                    @if(isset($researchCount) && $researchCount > 0)
-                        <span class="badge bg-success">{{ $researchCount }}</span>
-                    @endif
-                </a>
-            </li>
             
             <li class="{{ Route::is('admin.documentation.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.documentation.index') }}">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr"
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
     @class([
         'rtl' => app()->getLocale() == 'ar',
         'ltr' => app()->getLocale() == 'fr',
@@ -11,260 +11,128 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- SEO Meta Tags -->
-    <title>{{ config('app.name', 'Centre de Ressources du Préscolaire') }} - @yield('title', 'Accueil')</title>
-    <meta name="description" content="@yield('description', 'Centre de Ressources du Préscolaire - Plateforme dédiée à la formation et aux ressources pédagogiques pour l\'éducation préscolaire.')">
-    <meta name="keywords" content="@yield('keywords', 'éducation préscolaire, formation enseignants, ressources pédagogiques, maternelle, éducation enfantine')">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ config('app.name', 'Centre de Ressources du Préscolaire') }} - @yield('title', 'Accueil')">
-    <meta property="og:description" content="@yield('description', 'Centre de Ressources du Préscolaire - Plateforme dédiée à la formation et aux ressources pédagogiques pour l\'éducation préscolaire.')">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('storage/images/logo.png') }}">
-    <meta property="og:site_name" content="{{ config('app.name', 'Centre de Ressources du Préscolaire') }}">
-    
-    <!-- Twitter Card Meta Tags -->
+    @php
+        $metaData = \App\Helpers\SEOHelper::generateMetaTags([
+            'title' => trim(app('view')->yieldContent('title') ?: 'Accueil') . ' - ' . config('app.name'),
+            'description' => trim(app('view')->yieldContent('description') ?: 'Centre de Ressources du Préscolaire offrant des ressources pédagogiques et formations spécialisées.'),
+            'image' => trim(app('view')->yieldContent('image') ?: asset('storage/images/logo.png')),
+            'type' => trim(app('view')->yieldContent('type') ?: 'website'),
+            'url' => url()->current(),
+        ]);
+    @endphp
+
+    <!-- Primary Meta Tags -->
+    <title>{{ $metaData['title'] }}</title>
+    <meta name="title" content="{{ $metaData['title'] }}">
+    <meta name="description" content="{{ $metaData['description'] }}">
+    <meta name="keywords" content="éducation préscolaire, Maroc, formation, ressources pédagogiques, éducation, préscolaire">
+    <meta name="author" content="Centre de Ressources du Préscolaire">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="{{ $metaData['locale'] }}">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="{{ $metaData['url'] }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{{ $metaData['type'] }}">
+    <meta property="og:url" content="{{ $metaData['url'] }}">
+    <meta property="og:title" content="{{ $metaData['title'] }}">
+    <meta property="og:description" content="{{ $metaData['description'] }}">
+    <meta property="og:image" content="{{ $metaData['image'] }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="{{ $metaData['site_name'] }}">
+    <meta property="og:locale" content="{{ $metaData['locale'] }}">
+    <meta property="og:locale:alternate" content="{{ $metaData['locale_alternate'] }}">
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ config('app.name', 'Centre de Ressources du Préscolaire') }} - @yield('title', 'Accueil')">
-    <meta name="twitter:description" content="@yield('description', 'Centre de Ressources du Préscolaire - Plateforme dédiée à la formation et aux ressources pédagogiques pour l\'éducation préscolaire.')">
-    <meta name="twitter:image" content="{{ asset('storage/images/logo.png') }}">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ url()->current() }}">
-    
-    <!-- Alternate Languages -->
-    <link rel="alternate" hreflang="fr" href="{{ url()->current() }}">
-    <link rel="alternate" hreflang="ar" href="{{ route('language.switch', 'ar') }}">
-    <link rel="alternate" hreflang="x-default" href="{{ url()->current() }}">
-    
+    <meta name="twitter:url" content="{{ $metaData['url'] }}">
+    <meta name="twitter:title" content="{{ $metaData['title'] }}">
+    <meta name="twitter:description" content="{{ $metaData['description'] }}">
+    <meta name="twitter:image" content="{{ $metaData['image'] }}">
+
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="fr" href="{{ route('language.switch', 'fr') }}" />
+    <link rel="alternate" hreflang="ar" href="{{ route('language.switch', 'ar') }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ $metaData['url'] }}" />
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('storage/images/logo.png') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('storage/images/logo.png') }}">
 
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Font Awesome CDN (for icons) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css">
 
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- External Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+    <!-- DNS Prefetch and Preconnect for external resources -->
+    {{-- <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     
-    <!-- Vite Assets -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    Preload critical resources
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" as="style"> --}}
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "{{ config('app.name', 'Centre de Ressources du Préscolaire') }}",
-        "description": "Centre de Ressources du Préscolaire - Plateforme dédiée à la formation et aux ressources pédagogiques pour l'éducation préscolaire.",
-        "url": "{{ url('/') }}",
-        "logo": "{{ asset('storage/images/logo.png') }}",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Oujda",
-            "addressCountry": "MA"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service"
-        },
-        "sameAs": []
-    }
-    </script>
+    <!-- Local CSS will be loaded via Vite -->
+
+    <!-- CDN CSS (only for external libraries) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Local CSS (includes Bootstrap) -->
+    @vite(['resources/css/app.css'])
+
+
+
+
+    
 
     <!-- Additional Styles -->
     @stack('styles')
-    
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {!! \App\Helpers\SEOHelper::generateOrganizationSchema() !!}
+    </script>
+    <script type="application/ld+json">
+        {!! \App\Helpers\SEOHelper::generateWebSiteSchema() !!}
+    </script>
+    @stack('structured-data')
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
-<body itemscope itemtype="https://schema.org/WebPage">
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-    
+<body>
     <!-- Header/Navbar -->
-    <header role="banner">
+    <header>
         @include('components.public.header')
     </header>
 
     <!-- Main Content -->
-    <main id="main-content" role="main">
+    <main>
         @yield('content')
     </main>
 
     <!-- Footer -->
-    <footer role="contentinfo">
-        @include('components.public.footer')
-    </footer>
+    @include('components.public.footer')
 
-    <!-- External Scripts -->
-    <!-- <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Local JS will be loaded via Vite -->
+
+    <!-- CDN JS (only for external libraries) -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Local JS (includes Bootstrap, jQuery, Popper.js) -->
+    @vite(['resources/js/app.js'])
 
     <!-- Additional Scripts -->
     @stack('scripts')
-    
-    <!-- Performance Optimization Script -->
-    <script>
-        // Performance optimizations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lazy load non-critical resources
-            const lazyLoad = () => {
-                const lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
-                const lazyBackgrounds = [].slice.call(document.querySelectorAll('.lazy-bg'));
-                
-                if ('IntersectionObserver' in window) {
-                    const lazyImageObserver = new IntersectionObserver((entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                const lazyImage = entry.target;
-                                lazyImage.src = lazyImage.dataset.src;
-                                if (lazyImage.dataset.srcset) {
-                                    lazyImage.srcset = lazyImage.dataset.srcset;
-                                }
-                                lazyImage.classList.remove('lazy');
-                                lazyImageObserver.unobserve(lazyImage);
-                            }
-                        });
-                    });
 
-                    lazyImages.forEach((lazyImage) => {
-                        lazyImageObserver.observe(lazyImage);
-                    });
-
-                    const lazyBackgroundObserver = new IntersectionObserver((entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.remove('lazy-bg');
-                                lazyBackgroundObserver.unobserve(entry.target);
-                            }
-                        });
-                    });
-
-                    lazyBackgrounds.forEach((lazyBackground) => {
-                        lazyBackgroundObserver.observe(lazyBackground);
-                    });
-                }
-            };
-
-            // Initialize lazy loading
-            lazyLoad();
-
-            // Service Worker Registration (if available)
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('SW registered'))
-                    .catch(error => console.log('SW registration failed'));
-            }
-
-            // Language preference detection and persistence
-            const savedLanguage = localStorage.getItem('preferred-language');
-            if (savedLanguage && savedLanguage !== 'fr') {
-                // User has previously chosen a non-French language
-                // You can optionally redirect or show a language switch prompt
-                console.log('User prefers:', savedLanguage);
-            }
-
-            // Track language switches for analytics
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('[data-language-switch]')) {
-                    const language = e.target.closest('[data-language-switch]').dataset.language;
-                    localStorage.setItem('preferred-language', language);
-                    
-                    // Send to analytics (if implemented)
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'language_switch', {
-                            'event_category': 'engagement',
-                            'event_label': language
-                        });
-                    }
-                }
-            });
-        });
-
-        // Error handling for failed resources
-        window.addEventListener('error', function(e) {
-            console.warn('Resource loading error:', e);
-        }, true);
-    </script>
-
-    <style>
-        /* Accessibility improvements */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #000;
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 10000;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 6px;
-        }
-
-        /* Focus styles for better accessibility */
-        *:focus {
-            outline: 2px solid #10B981;
-            outline-offset: 2px;
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* High contrast support */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary-color: #000000;
-                --secondary-color: #000000;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            
-            body {
-                font-size: 12pt;
-                line-height: 1.4;
-            }
-            
-            a[href]:after {
-                content: " (" attr(href) ")";
-            }
-        }
-    </style>
+    <!-- CDN JS - Now loaded via Vite bundles -->
+    {{-- Bootstrap and Swiper are now bundled via Vite in app.js to avoid duplication --}}
 </body>
 
 </html>

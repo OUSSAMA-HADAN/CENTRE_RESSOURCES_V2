@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Recherche;
 use App\Models\Documentation;
 use App\Models\Educatrice;
 use App\Models\Formation;
@@ -27,10 +26,6 @@ class DashboardController extends Controller
             'formations' => [
                 'total' => Formation::count(),
                 'published' => Formation::where('is_published', true)->count(),
-            ],
-            'recherches' => [
-                'total' => Recherche::count(),
-                'published' => Recherche::where('is_published', true)->count(),
             ],
             'resources' => [
                 'total' => Resource::count(),

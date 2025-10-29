@@ -11,7 +11,7 @@
             <p class="text-muted mb-0">Total: {{ $educatrices->total() }} candidat(s)</p>
         </div>
         <div class="d-flex gap-2">
-            <a href="{{ route('admin.candidats.export', request()->all()) }}" class="btn btn-sm btn-success shadow-sm">
+            <a href="{{ route('admin.educatrices.export-excel', request()->all()) }}" class="btn btn-sm btn-success shadow-sm">
                 <i class="fas fa-file-excel fa-sm text-white-50"></i> Exporter Excel
             </a>
             <a href="{{route('inscription.form')}}" class="btn btn-sm btn-primary shadow-sm">

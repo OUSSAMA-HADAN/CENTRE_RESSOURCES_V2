@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Admin;
 use Illuminate\Database\Seeder;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -22,16 +21,5 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Add more seed data as needed
-        // $this->call([
-        //     RechercheSeeder::class,
-        //     DocumentationSeeder::class,
-        //     FormationSeeder::class,
-        // ]);
-        // $this->call([
-        //     ApplicantSeeder::class,
-        // ]);
-        // $this->call([
-        //     RechercheSeeder::class,
-        // ]);
     }
 }

@@ -68,24 +68,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Publications Card -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Publications</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $statistics['recherches']['total'] }}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-book fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Content Row -->
@@ -101,12 +83,6 @@
                     <div class="progress mb-4">
                         <div class="progress-bar bg-success" role="progressbar" style="width: {{ $statistics['formations']['total'] > 0 ? ($statistics['formations']['published'] / $statistics['formations']['total']) * 100 : 0 }}%"
                             aria-valuenow="{{ $statistics['formations']['published'] }}" aria-valuemin="0" aria-valuemax="{{ $statistics['formations']['total'] }}"></div>
-                    </div>
-                    
-                    <h4 class="small font-weight-bold">Publications <span class="float-right">{{ $statistics['recherches']['published'] }} / {{ $statistics['recherches']['total'] }}</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: {{ $statistics['recherches']['total'] > 0 ? ($statistics['recherches']['published'] / $statistics['recherches']['total']) * 100 : 0 }}%"
-                            aria-valuenow="{{ $statistics['recherches']['published'] }}" aria-valuemin="0" aria-valuemax="{{ $statistics['recherches']['total'] }}"></div>
                     </div>
                     
                     <h4 class="small font-weight-bold">Ressources <span class="float-right">{{ $statistics['resources']['published'] }} / {{ $statistics['resources']['total'] }}</span></h4>
@@ -136,8 +112,8 @@
                 <div class="col-lg-6 mb-4">
                     <div class="card bg-success text-white shadow">
                         <div class="card-body">
-                            <div class="font-weight-bold">Publications</div>
-                            <div class="h5 mb-0">{{ $statistics['recherches']['published'] }}</div>
+                            <div class="font-weight-bold">Ressources</div>
+                            <div class="h5 mb-0">{{ $statistics['resources']['total'] ?? 0 }}</div>
                         </div>
                     </div>
                 </div>
@@ -172,13 +148,6 @@
                             <i class="fas fa-plus"></i>
                         </span>
                         <span class="text">Nouvelle Formation</span>
-                    </a>
-                    
-                    <a href="{{ route('admin.recherche.create') }}" class="btn btn-info btn-icon-split btn-lg mb-3 w-100">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Nouvelle Publication</span>
                     </a>
                     
                     <a href="{{ route('admin.documentation.resources.create') }}" class="btn btn-primary btn-icon-split btn-lg mb-3 w-100">
@@ -334,62 +303,3 @@
 </div>
 @endsection
 
-@push('styles')
-<style>
-.border-left-primary {
-    border-left: 0.25rem solid #4e73df !important;
-}
-
-.border-left-success {
-    border-left: 0.25rem solid #1cc88a !important;
-}
-
-.border-left-info {
-    border-left: 0.25rem solid #36b9cc !important;
-}
-
-.border-left-warning {
-    border-left: 0.25rem solid #f6c23e !important;
-}
-
-.border-left-danger {
-    border-left: 0.25rem solid #e74a3b !important;
-}
-
-.text-gray-800 {
-    color: #5a5c69 !important;
-}
-
-.text-gray-300 {
-    color: #dddfeb !important;
-}
-
-.btn-circle {
-    border-radius: 100%;
-    width: 2rem;
-    height: 2rem;
-    padding: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-icon-split {
-    display: inline-flex;
-    overflow: hidden;
-}
-
-.btn-icon-split .icon {
-    background: rgba(0, 0, 0, 0.15);
-    padding: 0.5rem 0.75rem;
-    display: flex;
-    align-items: center;
-}
-
-.btn-icon-split .text {
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-}
-</style>
-@endpush

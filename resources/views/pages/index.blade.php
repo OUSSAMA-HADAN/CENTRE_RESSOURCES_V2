@@ -3,894 +3,443 @@
 @section('title', 'Accueil')
 
 @section('content')
-  
 
-
-
-
-
-
-
-
-<!-- Enhanced Hero Section with Perfect Responsiveness -->
-<section id="hero" class="hero position-relative d-flex align-items-center justify-content-center text-white" style="min-height: 100vh; padding-top: 80px; background: linear-gradient(rgba(16, 185, 129, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('storage/images/hero-img.webp') }}') center/cover no-repeat fixed; overflow: hidden;">
-    
-    <!-- Animated Particles -->
-    <div class="particles-container position-absolute w-100 h-100 top-0 start-0" style="z-index: 1;"></div>
-    
-    <div class="container position-relative" style="z-index: 10;">
-
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
-                <!-- Enhanced Animated Logo Icon -->
-                <div class="animate__animated animate__fadeInDown">
-                    <div class="hero-logo-container">
-                        <i class="fas fa-graduation-cap hero-logo-icon"></i>
-                    </div>
-                </div>
-                
-                <!-- Enhanced Main Title - French -->
-                <h1 class="hero-title-gradient animate__animated animate__fadeInUp">
-                    Centre de Ressources du Préscolaire - OUJDA
-                </h1>
-                
-                <!-- Enhanced Title in Arabic -->
-                <h2 class="hero-arabic-title animate__animated animate__fadeInUp animate__delay-1s">
-                    مركز موارد التعليم الأولي - وجدة
-                </h2>
-                
-                <!-- Enhanced Glowing Separator -->
-                <div class="animate__animated animate__fadeInUp animate__delay-1s">
-                    <div class="hero-separator-enhanced"></div>
-                </div>
-                
-                <!-- Enhanced Action buttons with hover effects -->
-                <div class="hero-buttons-container animate__animated animate__fadeInUp animate__delay-2s">
-                    <a href="{{route('inscription.form')}}" class="btn hero-btn-primary shadow-sm">
-                        <i class="fas fa-user-plus me-2"></i>{{ __('homepage.register_button') }}
-                    </a>
-                    <a href="#surNous" class="btn hero-btn-secondary">
-                        <i class="fas fa-info-circle me-2"></i>{{ __('homepage.more_info_button') }}
-                    </a>
-                </div>
-
-                <!-- TV News Ticker Bar - Now positioned relative to content -->
-                <div class="news-ticker-wrapper animate__animated animate__fadeInUp animate__delay-3s">
-                    <div class="news-ticker">
-                        <div class="news-ticker-content">
-                            <div class="news-ticker-text">{{ __('homepage.disclamer') }}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Enhanced wave effect at bottom with multiple layers -->
-    <div class="position-absolute bottom-0 start-0 w-100" style="z-index: 2;">
-        <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
-            <defs>
-                <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-            </defs>
-            <g class="wave1">
-                <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255,0.1)"></use>
-            </g>
-            <g class="wave2">
-                <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255,0.2)"></use>
-            </g>
-            <g class="wave3">
-                <use xlink:href="#wave-path" x="50" y="9" fill="#f8f9fa"></use>
-            </g>
-        </svg>
-    </div>
-
-    <style>
-        /* Development Banner */
-        .dev-banner {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            text-align: center;
-            transform: rotate(-2deg);
-        }
-        
-        .dev-banner-inner {
-            display: inline-block;
-            background-color: #f7a223;
-            color: white;
-            font-weight: bold;
-            padding: 8px 25px;
-            font-size: 18px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-            animation: pulse-banner 2s infinite;
-            border-radius: 4px;
-            transform: rotate(0deg);
-        }
-        
-        @keyframes pulse-banner {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Professional Enhancement Styles */
-        .hero-logo-container {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            padding: 2rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
-        .hero-logo-container:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow: 0 15px 35px rgba(255, 193, 7, 0.2);
-        }
-
-        .hero-logo-icon {
-            background: linear-gradient(135deg, #ffc107, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 4px 8px rgba(255, 193, 7, 0.3));
-            font-size: 4rem;
-        }
-
-        .hero-title-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-            font-size: 3.5rem;
-            font-weight: 700;
-        }
-
-        .hero-arabic-title {
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
-            font-family: 'Amiri', serif;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        .hero-separator-enhanced {
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #ffc107, transparent);
-            border-radius: 2px;
-            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
-            position: relative;
-            margin: 2rem auto;
-        }
-
-        .hero-separator-enhanced::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            background: #ffc107;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 193, 7, 0.8);
-        }
-
-        .hero-buttons-container {
-            margin-bottom: 2rem;
-            gap: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .hero-btn-primary {
-            background: linear-gradient(135deg, #ffc107 0%, #f59e0b 100%);
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero-btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .hero-btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .hero-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
-            background: linear-gradient(135deg, #f59e0b 0%, #ffc107 100%);
-            color: white;
-            text-decoration: none;
-        }
-
-        .hero-btn-secondary {
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero-btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-        }
-
-        /* Enhanced particles animation */
-        .particles-container::before,
-        .particles-container::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .particles-container::before {
-            top: 20%;
-            left: 10%;
-            animation-delay: -2s;
-        }
-
-        .particles-container::after {
-            top: 60%;
-            right: 15%;
-            animation-delay: -4s;
-        }
-
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg); 
-                opacity: 0.4; 
-            }
-            50% { 
-                transform: translateY(-25px) rotate(180deg); 
-                opacity: 0.8; 
-            }
-        }
-
-        /* FIXED TV News Ticker Bar Styles */
-        .news-ticker-wrapper {
-            position: relative;
-            width: 100%;
-            margin: 2rem auto 0;
-            padding: 0 15px;
-            z-index: 50;
-        }
-
-        .news-ticker {
-            width: 100%;
-            height: 50px;
-            background: #7edc2671;
-            color: white;
-            box-shadow: 0 2px 15px rgba(65, 220, 38, 0.4);
-            overflow: hidden;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .news-ticker-content {
-            display: flex;
-            align-items: center;
-            height: 100%;
-            white-space: nowrap;
-            animation: scrollNews 30s linear infinite;
-        }
-
-        .news-ticker-label {
-            background: #2c991bff;
-            padding: 0 20px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            flex-shrink: 0;
-            border-right: 3px solid #26d712ff;
-        }
-
-        .news-ticker-text {
-            padding: 0 30px;
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1.2;
-            white-space: nowrap;
-            overflow: visible;
-            min-width: max-content;
-            flex-shrink: 0;
-        }
-
-        @keyframes scrollNews {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-200%);
-            }
-        }
-
-        /* RTL animation for Arabic mode */
-        html[lang="ar"] .news-ticker-content,
-        body[lang="ar"] .news-ticker-content,
-        [lang="ar"] .news-ticker-content {
-            animation: scrollNewsRTL 40s linear infinite;
-        }
-
-        @keyframes scrollNewsRTL {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(300%);
-            }
-        }
-
-        /* Adjust label position for RTL */
-        html[lang="ar"] .news-ticker-label,
-        body[lang="ar"] .news-ticker-label,
-        [lang="ar"] .news-ticker-label {
-            border-right: none;
-            border-left: 3px solid #dc2626;
-            order: 2;
-        }
-
-        html[lang="ar"] .news-ticker-text,
-        body[lang="ar"] .news-ticker-text,
-        [lang="ar"] .news-ticker-text {
-            order: 1;
-            direction: rtl;
-            text-align: right;
-        }
-
-        /* Hero waves animation enhanced */
-        .hero .hero-waves {
-            display: block;
-            width: 100%;
-            height: 60px;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-        }
-
-        .hero .wave1 use {
-            animation: move-forever1 10s linear infinite;
-            animation-delay: -2s;
-        }
-
-        .hero .wave2 use {
-            animation: move-forever2 8s linear infinite;
-            animation-delay: -2s;
-        }
-
-        .hero .wave3 use {
-            animation: move-forever3 6s linear infinite;
-            animation-delay: -2s;
-        }
-
-        @keyframes move-forever1 {
-            0% { transform: translate(85px, 0%); }
-            100% { transform: translate(-90px, 0%); }
-        }
-
-        @keyframes move-forever2 {
-            0% { transform: translate(-90px, 0%); }
-            100% { transform: translate(85px, 0%); }
-        }
-
-        @keyframes move-forever3 {
-            0% { transform: translate(-90px, 0%); }
-            100% { transform: translate(85px, 0%); }
-        }
-
-        /* Tablet Responsive (768px - 991px) */
-        @media (max-width: 991.98px) {
-            .hero {
-                min-height: 95vh;
-                padding-top: 70px;
-            }
-            
-            .hero-logo-container {
-                padding: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-logo-icon {
-                font-size: 3.5rem;
-            }
-            
-            .hero-title-gradient {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-arabic-title {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .hero-separator-enhanced {
-                width: 120px;
-                margin: 1.5rem auto;
-            }
-            
-            .hero-buttons-container {
-                margin-bottom: 2rem;
-            }
-            
-            .hero-btn-primary,
-            .hero-btn-secondary {
-                padding: 0.875rem 1.5rem;
-                font-size: 1rem;
-            }
-            
-            .news-ticker-wrapper {
-                margin-top: 1.5rem;
-                padding: 0 10px;
-            }
-            
-            .news-ticker {
-                height: 45px;
-            }
-            
-            .news-ticker-label {
-                padding: 0 15px;
-                font-size: 12px;
-            }
-            
-            .news-ticker-text {
-                font-size: 13px;
-                padding: 0 20px;
-            }
-        }
-
-        /* Mobile Responsive (max-width: 767px) */
-        @media (max-width: 767.98px) {
-            .hero {
-                min-height: 90vh;
-                padding-top: 60px;
-            }
-            
-            .dev-banner {
-                top: 15px;
-            }
-            
-            .dev-banner-inner {
-                font-size: 16px;
-                padding: 6px 20px;
-            }
-            
-            .hero-logo-container {
-                padding: 1.25rem;
-                margin-bottom: 1.25rem;
-                margin-top: 40px;
-            }
-            
-            .hero-logo-icon {
-                font-size: 3rem;
-            }
-            
-            .hero-title-gradient {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-                line-height: 1.2;
-            }
-            
-            .hero-arabic-title {
-                font-size: 1.25rem;
-                margin-bottom: 1.25rem;
-            }
-            
-            .hero-separator-enhanced {
-                width: 100px;
-                margin: 1.25rem auto;
-            }
-            
-            .hero-buttons-container {
-                flex-direction: column;
-                margin-bottom: 1.5rem;
-                gap: 0.75rem;
-            }
-            
-            .hero-btn-primary,
-            .hero-btn-secondary {
-                padding: 0.75rem 1.25rem;
-                font-size: 0.95rem;
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-            
-            .news-ticker-wrapper {
-                margin-top: 1.25rem;
-                padding: 0 10px;
-            }
-            
-            .news-ticker {
-                height: 45px;
-                border-radius: 6px;
-            }
-            
-            .news-ticker-content {
-                animation: scrollNewsMobile 40s linear infinite;
-            }
-            
-            html[lang="ar"] .news-ticker-content,
-            body[lang="ar"] .news-ticker-content,
-            [lang="ar"] .news-ticker-content {
-                animation: scrollNewsRTLMobile 25s linear infinite;
-            }
-            
-            .news-ticker-label {
-                padding: 0 15px;
-                font-size: 12px;
-            }
-            
-            .news-ticker-text {
-                font-size: 13px;
-                padding: 0 20px;
-            }
-        }
-
-        /* Small Mobile Responsive (max-width: 575px) */
-        @media (max-width: 575.98px) {
-            .hero {
-                min-height: 85vh;
-                padding-top: 50px;
-            }
-            
-            .dev-banner {
-                top: 10px;
-            }
-            
-            .dev-banner-inner {
-                font-size: 14px;
-                padding: 5px 15px;
-            }
-            
-            .hero-logo-container {
-                padding: 1rem;
-                margin-bottom: 1rem;
-                margin-top: 30px;
-            }
-            
-            .hero-logo-icon {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title-gradient {
-                font-size: 1.75rem;
-                margin-bottom: 0.75rem;
-                line-height: 1.1;
-            }
-            
-            .hero-arabic-title {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .hero-separator-enhanced {
-                width: 80px;
-                margin: 1rem auto;
-            }
-            
-            .hero-buttons-container {
-                margin-bottom: 1rem;
-                gap: 0.5rem;
-            }
-            
-            .hero-btn-primary,
-            .hero-btn-secondary {
-                padding: 0.625rem 1rem;
-                font-size: 0.9rem;
-                max-width: 250px;
-            }
-            
-            .news-ticker-wrapper {
-                margin-top: 1rem;
-                padding: 0 5px;
-            }
-            
-            .news-ticker {
-                height: 40px;
-                border-radius: 4px;
-            }
-            
-            .news-ticker-content {
-                animation: scrollNewsMobile 30s linear infinite;
-            }
-            
-            html[lang="ar"] .news-ticker-content,
-            body[lang="ar"] .news-ticker-content,
-            [lang="ar"] .news-ticker-content {
-                animation: scrollNewsRTLMobile 30s linear infinite;
-            }
-            
-            .news-ticker-label {
-                padding: 0 12px;
-                font-size: 11px;
-            }
-            
-            .news-ticker-text {
-                font-size: 12px;
-                padding: 0 15px;
-            }
-        }
-
-        /* Extra Small Mobile (max-width: 375px) */
-        @media (max-width: 375px) {
-            .hero-title-gradient {
-                font-size: 1.5rem;
-            }
-            
-            .hero-arabic-title {
-                font-size: 1rem;
-            }
-            
-            .hero-btn-primary,
-            .hero-btn-secondary {
-                font-size: 0.85rem;
-                max-width: 220px;
-            }
-            
-            .news-ticker-wrapper {
-                margin-top: 0.75rem;
-            }
-            
-            .news-ticker {
-                height: 35px;
-            }
-            
-            .news-ticker-label {
-                padding: 0 10px;
-                font-size: 10px;
-            }
-            
-            .news-ticker-text {
-                font-size: 11px;
-                padding: 0 12px;
-            }
-        }
-
-        /* Mobile-specific animations with longer distance */
-        @keyframes scrollNewsMobile {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-400%);
-            }
-        }
-
-        @keyframes scrollNewsRTLMobile {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(250%);
-            }
-        }
-
-        /* Handle fixed background for iOS */
-        @supports (-webkit-overflow-scrolling: touch) {
-            .hero {
-                background-attachment: scroll;
-            }
-        }
-    </style>
-</section>
-
-<!-- Responsive JS code for particles -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Create and animate floating particles in the hero section
-    const particlesContainer = document.querySelector('.particles-container');
-    
-    if (particlesContainer) {
-        // Adjust number of particles based on screen size
-        const width = window.innerWidth;
-        const particleCount = width < 768 ? 25 : 50;
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            
-            // Random styling for particles - smaller for mobile
-            const size = width < 768 ? (Math.random() * 3 + 1) : (Math.random() * 5 + 2);
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            const opacity = Math.random() * 0.5 + 0.1;
-            const animDuration = Math.random() * 15 + 10;
-            const animDelay = Math.random() * 5;
-            
-            // Set particle styles
-            particle.style.position = 'absolute';
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.borderRadius = '50%';
-            particle.style.backgroundColor = 'rgba(255, 255, 255, ' + opacity + ')';
-            particle.style.left = `${posX}%`;
-            particle.style.top = `${posY}%`;
-            particle.style.animation = `floatParticle ${animDuration}s ease-in-out ${animDelay}s infinite`;
-            
-            particlesContainer.appendChild(particle);
-        }
+<style>
+    /* Professional Hero Section */
+    .hero-section {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
     }
-    
-    // Smooth scroll for anchor links with offset for fixed header
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                // Get header height for offset
-                const headerHeight = document.querySelector('header') ? 
-                    document.querySelector('header').offsetHeight : 0;
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - headerHeight,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
 
-// Add keyframe animation for particles
-const style = document.createElement('style');
-style.innerHTML = `
-    @keyframes floatParticle {
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('{{ asset('storage/images/hero-img.webp') }}') center/cover no-repeat;
+        opacity: 0.3;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        max-width: 800px;
+        padding: 0 20px;
+    }
+
+    .hero-logo {
+        margin-bottom: 2rem;
+        animation: fadeInDown 1s ease-out;
+    }
+
+    .hero-logo img {
+        max-height: 120px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        transition: transform 0.3s ease;
+    }
+
+    .hero-logo img:hover {
+        transform: scale(1.05);
+    }
+
+    .hero-titles {
+        margin-bottom: 2rem;
+    }
+
+    .hero-title-fr {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-title-ar {
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-family: 'Amiri', serif;
+        opacity: 0.95;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .hero-divider {
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #ffc107, #f59e0b);
+        margin: 0 auto 2rem;
+        border-radius: 2px;
+        animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .hero-actions {
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .hero-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 25px;
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .hero-link:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1;
+        border: 2px solid white;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+        animation: badge-pulse 2s ease-in-out infinite;
+        z-index: 10;
+    }
+
+    .notification-badge:empty,
+    .notification-badge[data-count="0"] {
+        background: #6b7280;
+        box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+        animation: badge-pulse-subtle 3s ease-in-out infinite;
+    }
+
+    @keyframes badge-pulse {
         0%, 100% {
-            transform: translateY(0) translateX(0);
-        }
-        25% {
-            transform: translateY(-15px) translateX(10px);
+            transform: scale(1);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
         }
         50% {
-            transform: translateY(-25px) translateX(-5px);
-        }
-        75% {
-            transform: translateY(-10px) translateX(-10px);
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.6);
         }
     }
-`;
-document.head.appendChild(style);
-</script>
 
+    @keyframes badge-pulse-subtle {
+        0%, 100% {
+            transform: scale(1);
+            box-shadow: 0 2px 8px rgba(107, 114, 128, 0.3);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 3px 10px rgba(107, 114, 128, 0.4);
+        }
+    }
 
+    .hero-announcement {
+        animation: fadeInUp 1s ease-out 1s both;
+    }
 
+    .announcement-content {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 15px 20px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        backdrop-filter: blur(10px);
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
+    .hero-waves {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 120px;
+        z-index: 1;
+        line-height: 0;
+    }
 
+    .hero-waves svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
 
+    .hero-waves path {
+        animation: gentleWave 6s ease-in-out infinite;
+    }
 
+    .hero-waves path:nth-child(1) {
+        animation-delay: 0s;
+    }
 
+    .hero-waves path:nth-child(2) {
+        animation-delay: -2s;
+    }
 
+    @keyframes gentleWave {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(10px);
+        }
+    }
 
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
+    /* Wave Animation Enhancements */
+    .hero-waves::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(16,185,129,0.1), transparent);
+        animation: wave-shimmer 3s ease-in-out infinite;
+    }
 
+    @keyframes wave-shimmer {
+        0%, 100% {
+            transform: translateX(-100%);
+        }
+        50% {
+            transform: translateX(100%);
+        }
+    }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero-title-fr {
+            font-size: 2.2rem;
+        }
+        
+        .hero-title-ar {
+            font-size: 1.4rem;
+        }
+        
+        .hero-logo img {
+            max-height: 80px;
+        }
+        
+        .hero-content {
+            padding: 0 15px;
+        }
+        
+        .hero-waves {
+            height: 100px;
+        }
+        
+        .notification-badge {
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
+            top: -6px;
+            right: -6px;
+        }
+    }
 
+    @media (max-width: 576px) {
+        .hero-title-fr {
+            font-size: 1.8rem;
+        }
+        
+        .hero-title-ar {
+            font-size: 1.2rem;
+        }
+        
+        .hero-logo img {
+            max-height: 60px;
+        }
+        
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+        }
+        
+        .announcement-content {
+            font-size: 0.85rem;
+            padding: 12px 15px;
+        }
+        
+        .hero-waves {
+            height: 80px;
+        }
+        
+        .notification-badge {
+            width: 18px;
+            height: 18px;
+            font-size: 0.65rem;
+            top: -5px;
+            right: -5px;
+        }
+    }
+</style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Professional Hero Section -->
+<section id="hero" class="hero-section" >
+    <div class="hero-background"></div>
+    
+    <div class="hero-content">
+        <div class="hero-logo">
+            <img src="{{ asset('storage/images/logo.png') }}" alt="Centre de Ressources du Préscolaire" loading="eager" fetchpriority="high">
+        </div>
+        
+        <div class="hero-titles">
+            <h1 class="hero-title-fr">Centre de Ressources du Préscolaire - OUJDA</h1>
+            <h2 class="hero-title-ar">مركز موارد التعليم الأولي - وجدة</h2>
+        </div>
+        
+        <div class="hero-divider"></div>
+        
+        <div class="hero-actions">
+            <a href="{{ route('documentation.index') }}" class="hero-link">
+                <i class="fas fa-book"></i>
+                <span>{{ __('homepage.documentation_reminder') }}</span>
+                <span class="notification-badge" data-count="{{ $documentationCount }}">{{ $documentationCount }}</span>
+            </a>
+        </div>
+        
+        <div class="hero-announcement">
+            <div class="announcement-content">
+                {{ __('homepage.disclamer') }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="hero-waves">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,0 L0,40 Q360,20 720,40 T1440,40 L1440,120 L0,120 Z" fill="#ffffff"/>
+            <path d="M0,30 L0,60 Q360,40 720,60 T1440,60 L1440,120 L0,120 Z" fill="#f8fafb"/>
+            <path d="M0,60 L0,120 L1440,120 L1440,120 Z" fill="#f0f4f8"/>
+        </svg>
+    </div> 
+</section>
 
 <!-- Professional Sur Nous Section -->
-<section id="surNous" class="py-5 bg-white">
+<section id="surNous" class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);">
     <div class="container">
-        <!-- Section Header - First -->
-        <div class="row">
-            <div class="col-12">
-                <div class="section-header text-center mb-5">
-                    <h2 class="display-6 fw-bold text-dark mb-4">{{ __('homepage.about.title') }}</h2>
-                    <p class="lead text-muted mb-5">{{ __('homepage.about.description') }}</p>
+        <!-- Section Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <span class="badge bg-primary text-white mb-3 px-4 py-2 rounded-pill shadow-sm">
+                    <i class="fas fa-university me-2"></i>{{ __('homepage.about.badge') }}
+                </span>
+                <h2 class="display-5 fw-bold text-dark mb-3">{{ __('homepage.about.title') }}</h2>
+                <div class="d-flex justify-content-center mb-4">
+                    <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #10b981, #0ea5e9); border-radius: 2px;"></div>
                 </div>
+                <p class="lead text-muted col-lg-8 mx-auto">{{ __('homepage.about.description') }}</p>
             </div>
         </div>
 
-        <div class="row align-items-center">
-            <!-- Image Column - Second -->
+        <div class="row align-items-center g-4">
+            <!-- Image Column -->
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="position-relative">
-                    <div class="image-frame rounded-3 overflow-hidden shadow-sm">
-                        <img src="{{ asset('storage/images/ecole.webp') }}" class="img-fluid w-100" alt="Centre de Ressources du Préscolaire" style="height: 500px; object-fit: cover;">
+                    <div class="about-image-wrapper rounded-4 overflow-hidden shadow-lg">
+                        <img src="{{ asset('storage/images/ecole.webp') }}" class="img-fluid w-100 about-image" alt="Centre de Ressources du Préscolaire" style="height: 550px; object-fit: cover;" loading="lazy">
                     </div>
-                    <!-- Decorative Element -->
-                    <div class="position-absolute top-0 end-0 w-25 h-25 bg-primary bg-opacity-05 rounded-3 translate-middle-y"></div>
                 </div>
             </div>
             
-            <!-- Features Column - Third -->
+            <!-- Features Column -->
             <div class="col-lg-6">
-                <div class="ps-lg-4">
-                    <!-- Features List -->
-                    <div class="features-list">
-                        <!-- Feature 1 -->
-                        <div class="feature-item d-flex align-items-start mb-4 p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                            <div class="feature-icon bg-primary bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                                <i class="fas fa-graduation-cap fa-lg text-primary"></i>
+                <!-- Features List -->
+                <div class="features-list">
+                    <!-- Feature 1 -->
+                    <div class="feature-card mb-4 p-4 rounded-4 border-0 shadow-sm">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon-wrapper me-3 flex-shrink-0">
+                                <div class="feature-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                    <i class="fas fa-graduation-cap fa-2x text-white"></i>
+                                </div>
                             </div>
                             <div class="feature-content">
-                                <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.about.professional_training.title') }}</h5>
+                                <h5 class="fw-bold text-dark mb-2">{{ __('homepage.about.professional_training.title') }}</h5>
                                 <p class="text-muted mb-0">{{ __('homepage.about.professional_training.description') }}</p>
                             </div>
                         </div>
-                        
-                        <!-- Feature 2 -->
-                        <div class="feature-item d-flex align-items-start mb-4 p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                            <div class="feature-icon bg-success bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                                <i class="fas fa-chalkboard-teacher fa-lg text-success"></i>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="feature-card mb-4 p-4 rounded-4 border-0 shadow-sm">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon-wrapper me-3 flex-shrink-0">
+                                <div class="feature-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #f7a223 0%, #e89417 100%);">
+                                    <i class="fas fa-chalkboard-teacher fa-2x text-white"></i>
+                                </div>
                             </div>
                             <div class="feature-content">
-                                <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.about.qualified_experts.title') }}</h5>
+                                <h5 class="fw-bold text-dark mb-2">{{ __('homepage.about.qualified_experts.title') }}</h5>
                                 <p class="text-muted mb-0">{{ __('homepage.about.qualified_experts.description') }}</p>
                             </div>
                         </div>
-                        
-                        <!-- Feature 3 -->
-                        <div class="feature-item d-flex align-items-start mb-4 p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                            <div class="feature-icon bg-warning bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                                <i class="fas fa-tools fa-lg text-warning"></i>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="feature-card p-4 rounded-4 border-0 shadow-sm">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon-wrapper me-3 flex-shrink-0">
+                                <div class="feature-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+                                    <i class="fas fa-book-open fa-2x text-white"></i>
+                                </div>
                             </div>
                             <div class="feature-content">
-                                <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.about.pedagogical_resources.title') }}</h5>
+                                <h5 class="fw-bold text-dark mb-2">{{ __('homepage.about.pedagogical_resources.title') }}</h5>
                                 <p class="text-muted mb-0">{{ __('homepage.about.pedagogical_resources.description') }}</p>
                             </div>
                         </div>
@@ -901,88 +450,71 @@ document.head.appendChild(style);
     </div>
 
     <style>
-        .bg-opacity-05 { background-color: rgba(var(--bs-primary-rgb), 0.05) !important; }
-        .bg-opacity-10 { background-color: rgba(var(--bs-primary-rgb), 0.1) !important; }
+        .about-image-wrapper {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
         
-        .feature-item {
+        .about-image-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
             transition: all 0.3s ease;
-            border: 1px solid #e9ecef !important;
         }
         
-        .feature-item:hover {
-            border-color: var(--bs-primary) !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        .feature-card:hover {
+            background: white;
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
         }
         
-        .feature-icon {
-            transition: transform 0.3s ease;
+        .feature-icon-circle {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .feature-item:hover .feature-icon {
-            transform: scale(1.05);
+        .feature-card:hover .feature-icon-circle {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .image-frame {
-            transition: transform 0.3s ease;
-        }
-        
-        .image-frame:hover {
-            transform: scale(1.01);
-        }
-        
+        /* Responsive adjustments */
         @media (max-width: 991.98px) {
-            .display-6 {
-                font-size: 2rem;
+            .display-5 {
+                font-size: 2rem !important;
             }
             
-            .feature-item {
-                padding: 1.5rem !important;
-            }
-            
-            .image-frame img {
-                height: 400px !important;
+            .about-image {
+                height: 450px !important;
             }
         }
         
         @media (max-width: 767.98px) {
-            .display-6 {
-                font-size: 1.75rem;
+            .display-5 {
+                font-size: 1.75rem !important;
             }
             
-            .feature-item {
-                flex-direction: column;
-                text-align: center;
+            .about-image {
+                height: 400px !important;
             }
             
-            .feature-icon {
-                margin-right: 0 !important;
-                margin-bottom: 1rem;
-            }
-            
-            .image-frame img {
-                height: 350px !important;
+            .feature-card {
+                padding: 1.5rem !important;
             }
         }
         
         @media (max-width: 575.98px) {
-            .image-frame img {
-                height: 300px !important;
+            .about-image {
+                height: 350px !important;
+            }
+            
+            .feature-icon-wrapper {
+                margin-bottom: 1rem;
             }
         }
     </style>
 </section>
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Professional Units Section -->
 <section id="units" class="py-5 bg-light-subtle">
@@ -998,39 +530,9 @@ document.head.appendChild(style);
 
         <!-- Units Grid -->
         <div class="row g-4">
-            <!-- Research and Development Unit -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card border-0 rounded-3 shadow-sm h-100 unit-card bg-white">
-                    <div class="card-header bg-white border-bottom py-4">
-                        <div class="d-flex align-items-center">
-                            <div class="icon-wrapper bg-primary bg-opacity-10 rounded-3 p-3 me-3">
-                                <i class="fas fa-microscope fa-lg text-primary"></i>
-                            </div>
-                            <h5 class="mb-0 fw-semibold text-dark">{{ __('units.research.title') }}</h5>
-                        </div>
-                    </div>
-                    <div class="card-body py-4">
-                        <p class="text-muted mb-4">{{ __('units.research.description') }}</p>
-                        <ul class="list-unstyled mb-0">
-                            @foreach(__('units.research.key_areas') as $area)
-                                <li class="mb-2 d-flex align-items-start">
-                                    <i class="fas fa-check-circle text-primary mt-1 me-2 fs-6"></i>
-                                    <span class="text-muted">{{ $area }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="card-footer bg-white border-0 py-3">
-                        <a href="{{route('recherche.index')}}" class="btn btn-outline-primary w-100 py-2">
-                            <i class="fas fa-arrow-right me-2"></i>
-                            {{ __('units.research.learn_more') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
 
             <!-- Documentation and Production Unit -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="card border-0 rounded-3 shadow-sm h-100 unit-card bg-white">
                     <div class="card-header bg-white border-bottom py-4">
                         <div class="d-flex align-items-center">
@@ -1061,7 +563,7 @@ document.head.appendChild(style);
             </div>
 
             <!-- Online Training Unit -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="card border-0 rounded-3 shadow-sm h-100 unit-card bg-white">
                     <div class="card-header bg-white border-bottom py-4">
                         <div class="d-flex align-items-center">
@@ -1169,98 +671,102 @@ document.head.appendChild(style);
     </style>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Professional Director Section -->
-<section id="director" class="py-5 bg-white">
+<section id="director" class="py-5" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
     <div class="container">
         <!-- Section Header -->
         <div class="text-center mb-5">
-            <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill">
-                {{ __('homepage.director.badge') }}
+            <span class="badge bg-primary text-white mb-3 px-4 py-2 rounded-pill shadow-sm">
+                <i class="fas fa-user-tie me-2"></i>{{ __('homepage.director.badge') }}
             </span>
-            <h2 class="display-6 fw-bold text-dark mb-3">
+            <h2 class="display-5 fw-bold text-dark mb-3">
                 {{ __('homepage.director.title_part1') }} 
                 <span class="text-primary">{{ __('homepage.director.title_part2') }}</span>
             </h2>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 80px; height: 3px; background: linear-gradient(90deg, #10b981, #0ea5e9);"></div>
+                <div style="width: 100px; height: 4px; background: linear-gradient(90deg, #10b981, #0ea5e9); border-radius: 2px;"></div>
             </div>
-            <p class="lead text-muted col-lg-8 mx-auto">
-                {{ __('homepage.director.description') }}
-            </p>
         </div>
         
-        <div class="row align-items-center g-5">
-           <!-- Image Column -->
-<div class="col-lg-5">
-    <div class="director-profile">
-        <div class="image-container rounded-3 overflow-hidden shadow-sm">
-            <img src="{{ asset('storage/images/prf.webp') }}" class="img-fluid director-image" alt="Responsable du Centre" style="width: 100%; height: 500px; object-fit: cover; object-position: center center;">
-        </div>
-        
-        <!-- Experience Badge -->
-        <div class="experience-badge bg-primary text-white rounded-3 p-3 shadow-sm mt-4 text-center">
-            <div class="h4 mb-0 fw-bold">20+</div>
-            <small class="opacity-90">{{ __('homepage.director.years_experience') }}</small>
-        </div>
-    </div>
-</div>
-            
-            <!-- Content Column -->
-            <div class="col-lg-7">
-                <div class="expertise-list">
-                    <!-- Expertise Item 1 -->
-                    <div class="expertise-item d-flex align-items-start mb-4 p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                        <div class="expertise-icon bg-primary bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                            <i class="fas fa-graduation-cap fa-lg text-primary"></i>
+        <!-- Professional Card Layout -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="director-card shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="row g-0">
+                        <!-- Image Section -->
+                        <div class="col-lg-4 bg-white position-relative">
+                            <div class="director-image-wrapper position-relative h-100">
+                                <img src="{{ asset('storage/images/prf.webp') }}" 
+                                     class="director-image w-100 h-100" 
+                                     alt="Responsable du Centre"
+                                     style="object-fit: cover; object-position: center;"
+                                     loading="lazy">
+                                
+                                <!-- Overlay with name and experience -->
+                                <div class="director-overlay position-absolute bottom-0 start-0 end-0 p-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <div class="experience-badge bg-white shadow px-3 py-2 rounded-pill">
+                                            <div class="h4 mb-0 fw-bold text-primary">20+</div>
+                                            <small class="text-muted d-block" style="font-size: 0.7rem;">{{ __('homepage.director.years_experience') }}</small>
+                                        </div>
+                                    </div>
+                                    <h4 class="text-white fw-bold mb-0">{{ __('homepage.director.name') }}</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div class="expertise-content">
-                            <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.director.expertise.formation.title') }}</h5>
-                            <p class="text-muted mb-0">{{ __('homepage.director.expertise.formation.description') }}</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Expertise Item 2 -->
-                    <div class="expertise-item d-flex align-items-start mb-4 p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                        <div class="expertise-icon bg-success bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                            <i class="fas fa-chalkboard-teacher fa-lg text-success"></i>
-                        </div>
-                        <div class="expertise-content">
-                            <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.director.expertise.experience.title') }}</h5>
-                            <p class="text-muted mb-0">{{ __('homepage.director.expertise.experience.description') }}</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Expertise Item 3 -->
-                    <div class="expertise-item d-flex align-items-start p-4 rounded-3 border border-light-subtle bg-light-subtle">
-                        <div class="expertise-icon bg-warning bg-opacity-10 rounded-3 p-3 me-4 flex-shrink-0">
-                            <i class="fas fa-certificate fa-lg text-warning"></i>
-                        </div>
-                        <div class="expertise-content">
-                            <h5 class="fw-semibold text-dark mb-2">{{ __('homepage.director.expertise.pedagogy.title') }}</h5>
-                            <p class="text-muted mb-0">{{ __('homepage.director.expertise.pedagogy.description') }}</p>
+                        
+                        <!-- Content Section -->
+                        <div class="col-lg-8 bg-white">
+                            <div class="p-5">
+                                <p class="lead text-dark mb-4" style="line-height: 1.8;">
+                                    {{ __('homepage.director.description') }}
+                                </p>
+                                
+                                <div class="row g-3 mt-4">
+                                    <!-- Expertise Item 1 -->
+                                    <div class="col-md-6">
+                                        <div class="expertise-card h-100 p-4 rounded-3 border-0 shadow-sm">
+                                            <div class="expertise-icon-wrapper mb-3">
+                                                <div class="expertise-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                                    <i class="fas fa-graduation-cap fa-2x text-white"></i>
+                                                </div>
+                                            </div>
+                                            <h6 class="fw-bold text-dark mb-2">{{ __('homepage.director.expertise.formation.title') }}</h6>
+                                            <p class="text-muted small mb-0">{{ __('homepage.director.expertise.formation.description') }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Expertise Item 2 -->
+                                    <div class="col-md-6">
+                                        <div class="expertise-card h-100 p-4 rounded-3 border-0 shadow-sm">
+                                            <div class="expertise-icon-wrapper mb-3">
+                                                <div class="expertise-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #f7a223 0%, #e89417 100%);">
+                                                    <i class="fas fa-chalkboard-teacher fa-2x text-white"></i>
+                                                </div>
+                                            </div>
+                                            <h6 class="fw-bold text-dark mb-2">{{ __('homepage.director.expertise.experience.title') }}</h6>
+                                            <p class="text-muted small mb-0">{{ __('homepage.director.expertise.experience.description') }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Expertise Item 3 -->
+                                    <div class="col-12">
+                                        <div class="expertise-card p-4 rounded-3 border-0 shadow-sm">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="expertise-icon-circle rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);">
+                                                        <i class="fas fa-certificate fa-2x text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <h6 class="fw-bold text-dark mb-2">{{ __('homepage.director.expertise.pedagogy.title') }}</h6>
+                                                    <p class="text-muted small mb-0">{{ __('homepage.director.expertise.pedagogy.description') }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1269,175 +775,100 @@ document.head.appendChild(style);
     </div>
 
     <style>
-        .bg-opacity-05 { background-color: rgba(var(--bs-primary-rgb), 0.05) !important; }
-        .bg-opacity-10 { background-color: rgba(var(--bs-primary-rgb), 0.1) !important; }
-        
-        .director-profile {
-            transition: transform 0.3s ease;
+        .director-card {
+            background: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .image-container {
-            transition: all 0.3s ease;
+        .director-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
         }
         
-        .director-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            object-position: center top;
+        .director-image-wrapper {
+            min-height: 600px;
         }
         
-        .image-container:hover {
-            transform: scale(1.01);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        .director-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .director-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 2;
         }
         
         .experience-badge {
-            transition: all 0.3s ease;
-            min-width: 100px;
-            display: inline-block;
-        }
-        
-        .director-profile:hover .experience-badge {
-            transform: scale(1.05);
-        }
-        
-        .expertise-item {
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef !important;
-        }
-        
-        .expertise-item:hover {
-            border-color: var(--bs-primary) !important;
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-        
-        .expertise-icon {
             transition: transform 0.3s ease;
         }
         
-        .expertise-item:hover .expertise-icon {
+        .director-card:hover .experience-badge {
             transform: scale(1.05);
         }
         
-        /* Desktop specific styles */
-        @media (min-width: 992px) {
-            .director-image {
-                height: 500px;
-            }
+        .expertise-card {
+            background: #f8f9fa;
+            transition: all 0.3s ease;
         }
         
-        /* Tablet and mobile adjustments */
+        .expertise-card:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+        }
+        
+        .expertise-icon-circle {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .expertise-card:hover .expertise-icon-circle {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Responsive adjustments */
         @media (max-width: 991.98px) {
-            .display-6 {
-                font-size: 2rem;
+            .director-image-wrapper {
+                min-height: 500px;
             }
             
-            .director-image {
-                height: 400px;
-                object-position: center center;
-            }
-            
-            .expertise-item {
-                padding: 1.5rem !important;
+            .director-overlay {
+                padding: 2rem !important;
             }
         }
         
         @media (max-width: 767.98px) {
-            .display-6 {
-                font-size: 1.75rem;
+            .director-image-wrapper {
+                min-height: 400px;
             }
             
-            .director-image {
-                height: 350px;
-                object-position: center center;
+            .director-overlay {
+                padding: 1.5rem !important;
             }
             
-            .expertise-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .expertise-icon {
-                margin-right: 0 !important;
+            .expertise-card {
                 margin-bottom: 1rem;
             }
         }
         
         @media (max-width: 575.98px) {
-            .director-image {
-                height: 300px;
-                object-position: center center;
+            .display-5 {
+                font-size: 1.75rem !important;
             }
             
-            .experience-badge {
-                min-width: 80px;
-                padding: 1rem !important;
+            .director-image-wrapper {
+                min-height: 350px;
             }
         }
-        
-        @media (max-width: 375px) {
-            .director-image {
-                height: 250px;
-                object-position: center center;
-            }
-        }
-        .director-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    object-position: center center;
-}
-
-/* Responsive height adjustments */
-@media (max-width: 991.98px) {
-    .director-image {
-        height: 400px;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .director-image {
-        height: 350px;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .director-image {
-        height: 300px;
-    }
-}
-
-@media (max-width: 375px) {
-    .director-image {
-        height: 250px;
-    }
-}
     </style>
 </section>
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Gallery Section -->
 <!-- Immersive 3D Gallery Section -->
@@ -2101,16 +1532,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     <!-- Location Section -->
     <section id="location" class="py-5 bg-light">
         <div class="container">
@@ -2155,4 +1576,3 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 @endsection
-

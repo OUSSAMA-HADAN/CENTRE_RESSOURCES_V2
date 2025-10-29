@@ -7,7 +7,6 @@ return [
     'home' => 'Accueil',
     'about' => 'À propos',
     'units' => 'Unités',
-    'research_development' => 'Unité de recherche et de développement',
     'documentation_production' => 'Unité de documentation et de production',
     'online_training' => 'Atelier en ligne',
     'gallery' => 'Galerie',
@@ -25,7 +24,6 @@ return [
 
     // Dropdown Sections
     'units_dropdown' => [
-        'research' => 'Unité de recherche et de développement',
         'documentation' => 'Unité de documentation et de production',
         'online_training' => 'Atelier en ligne',
     ],
@@ -33,4 +31,5 @@ return [
     // Accessibility and Mobile Menu
     'toggle_navigation' => 'Basculer la navigation',
     'close_menu' => 'Fermer le menu',
+    'change_language' => 'Changer de langue',
 ];

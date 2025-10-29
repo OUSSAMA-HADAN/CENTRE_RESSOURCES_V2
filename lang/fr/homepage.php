@@ -5,11 +5,14 @@ return [
     'title_ar' => 'مركز موارد التعليم الأولي - وجدة',
     'register_button' => 'S\'inscrire maintenant',
     'more_info_button' => 'En savoir plus',
+    'documentation_reminder' => 'Découvrir nos ressources',
     'disclamer' => "Annonce: l'inscription est ouverte , Cette formation est exclusivement destinée aux éducatrices exerçant actuellement dans le domaine de l'enseignement préscolaire. Elle s'adresse uniquement aux professionnelles en activité. Le nombre de places étant limité, l'inscription est réservée aux participantes répondant à ces critères.",
 
     "about" => [
+        'badge' => 'À propos de nous',
         'title' => 'Bienvenue au Centre de Ressources',
         'description' => 'Nous nous engageons à offrir une formation de qualité pour vous aider à atteindre vos objectifs dans le domaine de l\'éducation préscolaire.',
+        'years_experience' => 'Années d\'expérience',
 
         'professional_training' => [
             'title' => 'Formation professionnelle',
@@ -59,10 +62,12 @@ return [
         'get_directions' => 'Obtenez l\'itinéraire',
     ],
     'director' => [
+        
     'badge' => 'Notre Expert',
+    'name' => 'MR MESSAOUDI FOUAD',
     'title_part1' => 'Rencontrez le',
     'title_part2' => 'Responsable du Centre',
-    'description' => 'MR MASSAOUDI FOUAD , Avec plus de 20 ans d\'expérience dans le domaine de l\'éducation préscolaire, notre responsable est un expert reconnu et formateur principal de ce centre de formation.',
+    'description' => 'Avec plus de 20 ans d\'expérience dans le domaine de l\'éducation préscolaire, notre responsable est un expert reconnu et formateur principal de ce centre de formation.',
     'years_experience' => 'Années d\'Expérience',
     'expertise' => [
         'formation' => [
